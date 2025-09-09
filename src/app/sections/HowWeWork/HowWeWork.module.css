@@ -1,0 +1,81 @@
+.howWork {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh; /* Минимальная высота на весь экран */
+    height: auto; /* Высота подстраивается под контент */
+    padding: 70px 0;
+    width: 100%; /* Исправляем ширину */
+}
+
+.howWork:before {
+    content: "";
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/HowWorkBg.webp") no-repeat center center / cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.howWork:after {
+    content: '';
+    position: absolute; /* Фиксируем градиент */
+    top: 0;
+    left: 0;
+    right: 0;
+    will-change: transform;
+    bottom: 0;
+    background: linear-gradient(180deg, #242223, transparent);
+    z-index: -1;
+}
+.inner {
+    height: 100%;
+    position: relative;
+    padding: 40px 40px 60px 40px;
+    z-index: 3;
+    flex-direction: column;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
+.title{
+    font-weight: 600;
+    font-size: 40px;
+}
+.fields{
+    display: flex;
+    gap: 20px;
+}
+.text{
+    width: 40%;
+    font-size: 18px;
+    text-align: center;
+}
+
+@media (min-width: 1001px) {
+    .howWork:before {
+        background-attachment: fixed; /* Фиксируем только на больших экранах */
+    }
+}
+@media screen and (max-width: 1000px) {
+    .title{
+        font-size: 2rem;
+        text-align: center;
+    }
+    .text{
+        width: 100%;
+        font-size: 16px;
+    }
+    .fields{
+        flex-direction: column;
+    }
+}
+
+@supports (-webkit-touch-callout: none) {
+    .howWork:before {
+        background-attachment: scroll;
+    }
+}

@@ -1,0 +1,384 @@
+/* PlanModal.module.css */
+.planModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.planModal {
+    position: relative;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 90%;
+    height: 80%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: 50px;
+}
+
+.planModal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("/krutorusTopBg.webp");
+    transform: scale(-1, 1);
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(1px);
+    z-index: -1;
+}
+
+.planModal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.planCloseButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 40px;
+    font-weight: 100;
+    cursor: pointer;
+    color: white;
+    transition: color 0.2s;
+    line-height: 1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.planCloseButton:hover {
+    color: #d5d5d5;
+}
+
+.planModalTitle {
+    color: white;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+.planModalForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    gap: 30px;
+    width: 100%;
+}
+
+.planModalInputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.planFormGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.planFormGroup label {
+    text-align: left;
+    width: 100%;
+    padding-left: 15px;
+}
+
+.planGray {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #F4871A;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(2px);
+    border-radius: 30px;
+    padding: 12px 15px;
+    width: 100%;
+    min-height: 60px;
+    position: relative;
+}
+
+.planGray::after {
+    content: "▼";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    pointer-events: none;
+    font-size: 12px;
+}
+
+.planGray label {
+    color: #FFFFFF;
+    font-size: 18px;
+    flex-shrink: 0;
+    width: 40%;
+}
+
+.planGreen {
+    background-color: #7D9A6AB0;
+    border-radius: 20px;
+    padding: 12px 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 7px black;
+    border: none;
+    min-height: 60px;
+}
+
+.planGreen label {
+    color: #FFFFFFAB;
+    font-size: 18px;
+    font-weight: 400;
+    flex-shrink: 0;
+    width: 30%;
+}
+
+.planEditableInput {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    width: 65%;
+    text-align: right;
+    outline: none;
+}
+
+select.planEditableInput {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 4px 8px;
+    text-align: left;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select.planEditableInput option {
+    background: #333;
+    color: white;
+    padding: 8px;
+}
+
+select.planEditableInput option:hover {
+    background: #F4871A;
+}
+
+.planEditableInput::placeholder {
+    color: rgba(255, 255, 255, 0.67);
+    opacity: 1;
+    font-weight: 400;
+}
+
+.planRequiredField:not(:focus) {
+    border-color: #ff6b6b;
+}
+
+.planSubmitButton {
+    background: rgba(255, 255, 255, 0.3);
+    font-size: 20px;
+    width: 100%;
+    color: white;
+    border-radius: 30px;
+    padding: 14px 20px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+    box-shadow: 0 0 9px 2px rgb(255, 138, 22), inset 0 0 9px 3px #F7CCA3;
+}
+
+.planSubmitButton:hover {
+    scale: 1.02;
+}
+
+.planSubmitButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.planSubmitButton:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .planModal {
+        padding: 20px;
+        border-radius: 30px;
+        height: auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .planModalTitle {
+        font-size: 24px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+
+    .planModalForm {
+        gap: 25px;
+    }
+
+    .planModalInputs {
+        gap: 15px;
+    }
+
+    .planGray, .planGreen {
+        min-height: 50px;
+        padding: 10px 12px;
+    }
+
+    .planGray label, .planGreen label {
+        font-size: 16px;
+        width: 45%;
+    }
+
+    .planEditableInput {
+        font-size: 16px;
+    }
+
+    .planSubmitButton {
+        font-size: 18px;
+        padding: 12px 15px;
+    }
+
+    .planCloseButton {
+        font-size: 30px;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .planModal {
+        padding: 15px;
+        border-radius: 25px;
+        width: 95%;
+    }
+
+    .planModalTitle {
+        font-size: 22px;
+        margin-top: 15px;
+    }
+
+    .planGray, .planGreen {
+        min-height: 45px;
+        padding: 8px 10px;
+    }
+
+    .planGray label, .planGreen label {
+        font-size: 14px;
+        width: 50%;
+    }
+
+    .planEditableInput {
+        font-size: 14px;
+    }
+
+    .planSubmitButton {
+        font-size: 16px;
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 320px) {
+    .planModal {
+        padding: 12px;
+        border-radius: 20px;
+    }
+
+    .planModalTitle {
+        font-size: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .planModalForm {
+        gap: 15px;
+    }
+
+    .planGray, .planGreen {
+        min-height: 40px;
+        padding: 6px 8px;
+        border-radius: 15px;
+    }
+
+    .planGray label, .planGreen label {
+        font-size: 13px;
+        padding-left: 8px;
+        width: 55%;
+    }
+
+    .planEditableInput {
+        font-size: 13px;
+    }
+
+    .planSubmitButton {
+        font-size: 15px;
+        padding: 8px 10px;
+    }
+
+    .planCloseButton {
+        top: 8px;
+        right: 8px;
+        font-size: 25px;
+        width: 25px;
+        height: 25px;
+    }
+
+    .planGray::after {
+        right: 10px;
+        font-size: 10px;
+    }
+}

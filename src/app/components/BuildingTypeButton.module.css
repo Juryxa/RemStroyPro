@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    width: 350px;
+    height: 38px;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: #9C9C9C99;
+    position: relative;
+}
+
+.button {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    z-index: 2; /* Кнопки выше слайдера */
+    position: relative;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.slider {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background-color: #E2D6C2;
+    border-radius: 30px;
+    left: 0;
+    top: 0;
+    transition: transform 0.3s ease;
+    z-index: 1; /* Слайдер под кнопками */
+}
+
+.slider.right {
+    transform: translateX(100%);
+}
+.button.right{
+    color: #AB641C;
+    font-weight: 600;
+    transition-delay: 110ms;
+}
+@media screen and (max-width: 500px) {
+    .container {
+        width: 250px;
+    }
+}

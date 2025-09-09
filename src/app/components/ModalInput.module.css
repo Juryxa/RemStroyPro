@@ -1,0 +1,32 @@
+/* ModalInput.module.css */
+.container {
+    display: block;
+    width: 100%;
+}
+
+.gray {
+    border: 2px solid #F4871A;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(3px);
+    border-radius: 30px;
+    padding: 12px 15px;
+}
+
+.green {
+    background-color: #7D9A6AB0; /* 69% opacity */
+    border-radius: 20px;
+    padding: 12px 15px;
+    box-shadow: 0 2px 7px black;
+    border: none;
+}
+.green.requiredField:not(:focus) {
+    background-color: #ff0000;
+}
+
+.container input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}

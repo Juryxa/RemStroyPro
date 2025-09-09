@@ -1,0 +1,314 @@
+/* Plan.module.css */
+.plan {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 70px;
+    margin-top: 140px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cards {
+    color: white;
+    display: flex;
+    align-items: center;
+    width: 80%;
+    gap: 40px;
+    position: relative;
+}
+
+/* Анимация появления элементов */
+.titleAnimation,
+.subtitleAnimation,
+.cardAnimation {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: none;
+}
+
+.titleAnimation.animate,
+.subtitleAnimation.animate,
+.cardAnimation.animate {
+    animation: slideUp 1.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.titleAnimation.animate {
+    animation-delay: 0.1s;
+}
+
+.subtitleAnimation.animate {
+    animation-delay: 0.15s;
+}
+
+.h2Wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.centralCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    border-radius: 20px;
+    padding: 30px;
+    gap: 10px;
+    background-color: #888179B2;
+    position: relative;
+    z-index: 2;
+}
+
+.centralCard p {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.adjacentCard {
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    gap: 15px;
+    padding: 20px;
+    width: 25rem;
+    background-color: #888179B2;
+}
+
+.adjacentText {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.adjacentImage {
+    pointer-events: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 60px;
+    height: 60px;
+}
+
+.titleH3 {
+    color: #FFFFFF80;
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.titleH4 {
+    font-size: 18px;
+}
+
+.orderButton {
+    padding: 10px 40px;
+    border: none;
+    border-radius: 30px;
+    background-color: #f4871a;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 400;
+    height: 38px;
+    transition: all 0.2s ease-out;
+    white-space: nowrap;
+}
+
+.orderButton:hover {
+    background-color: #ff9d41;
+}
+
+.orderButton:active {
+    transform: scale(0.98);
+}
+
+/* Мобильная адаптация */
+@media (max-width: 992px) {
+    .plan {
+        margin-top: 100px;
+        padding-bottom: 50px;
+    }
+
+    .cards {
+        flex-direction: column;
+        width: 96%;
+        max-width: 600px;
+        gap: 20px;
+    }
+
+    .adjacentCard {
+        width: 20rem;
+        height: 8rem;
+        padding: 15px;
+        max-width: 700px;
+    }
+
+    .adjacentText {
+        font-size: 18px;
+    }
+
+    .titleH3 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+
+
+    .adjacentCard {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        padding: 20px;
+        justify-content: center;
+    }
+
+    .adjacentText {
+        font-size: 20px;
+    }
+
+    .centralCard {
+        width: 100%;
+        max-width: 500px;
+        padding: 20px;
+    }
+
+    .titleH3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .orderButton {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .plan {
+        margin-top: 80px;
+        padding-bottom: 40px;
+    }
+
+    .adjacentCard {
+        padding: 15px;
+    }
+
+    .adjacentText {
+        font-size: 18px;
+    }
+
+    .centralCard p {
+        font-size: 14px;
+    }
+
+    .titleH3 {
+        font-size: 20px;
+    }
+
+    .titleH4 {
+        font-size: 16px;
+    }
+
+    .orderButton {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .plan {
+        margin-top: 60px;
+        padding-bottom: 30px;
+    }
+
+    .adjacentCard {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        padding: 15px 10px;
+    }
+
+    .adjacentText {
+        font-size: 16px;
+    }
+
+    .adjacentImage {
+        width: 50px;
+        height: 50px;
+    }
+
+    .centralCard {
+        padding: 15px;
+    }
+
+    .centralCard p {
+        font-size: 13px;
+    }
+
+    .titleH3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 320px) {
+    .plan {
+        margin-top: 50px;
+        padding-bottom: 20px;
+    }
+
+    .adjacentCard {
+        padding: 12px 8px;
+    }
+
+    .adjacentText {
+        font-size: 14px;
+    }
+
+    .adjacentImage {
+        width: 40px;
+        height: 40px;
+    }
+
+    .centralCard {
+        padding: 12px;
+        border-radius: 15px;
+    }
+
+    .centralCard p {
+        font-size: 12px;
+    }
+
+    .titleH3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .titleH4 {
+        font-size: 15px;
+    }
+
+    .orderButton {
+        padding: 8px 15px;
+        font-size: 13px;
+        height: 34px;
+    }
+}

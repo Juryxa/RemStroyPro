@@ -1,0 +1,231 @@
+.field {
+    padding: 12px 36px;
+    letter-spacing: 0.3px;
+    border: none;
+    border-radius: 50px;
+    font-size: 17px;
+    font-weight: 500;
+    height: auto;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.orange{
+  color: white;
+    background-color: #F4871A;
+}
+.gray {
+    background: linear-gradient(135deg, #8d8d8d, #b3b3b3);
+    color: white;
+    box-shadow: 0 3px 10px rgba(140, 140, 140, 0.3);
+}
+.gray:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 5px rgba(140, 140, 140, 0.2);
+}
+.orangeTop {
+  background: linear-gradient(135deg, #f4871a, #ffa93b);
+  color: white;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 999px;
+  
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
+  text-align: center;
+  min-width: 220px;
+  cursor: pointer;
+}
+/* === Десктоп: более частое автонажатие === */
+@media (min-width: 701px) {
+  .orangeDelay1 {
+    animation: autoClick 3.5s ease-in-out infinite;
+    animation-delay: 0s;
+  }
+  .orangeDelay2 {
+    animation: autoClick 3.5s ease-in-out infinite;
+    animation-delay: 0.4s;
+  }
+  .orangeDelay3 {
+    animation: autoClick 3.5s ease-in-out infinite;
+    animation-delay: 0.8s;
+  }
+}
+
+/* === Мобильные: реже "нажимается" === */
+@media (max-width: 700px) {
+  .orangeDelay1 {
+    animation: autoClick 6s ease-in-out infinite;
+    animation-delay: 0s;
+  }
+  .orangeDelay2 {
+    animation: autoClick 6s ease-in-out infinite;
+    animation-delay: 0.6s;
+  }
+  .orangeDelay3 {
+    animation: autoClick 6s ease-in-out infinite;
+    animation-delay: 1.2s;
+  }
+}
+
+.orangeTop::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.orangeTop:hover::before {
+    left: 125%;
+}
+.orangeTop:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.orangeTop:active {
+    animation: clickPop 0.2s ease forwards;
+  transform: scale(0.97);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+.transparentOrange{
+    color: white;
+    border: 2px solid #F4871A;
+    padding: 20px 40px;
+}
+.transparentGray{
+    color: white;
+    position: relative;
+    z-index: 10;
+    border: 2px solid #9C9C9C;
+    padding: 30px 40px;
+}
+.transparentOrangePrice{
+    margin: 5px;
+    border: 2px solid #F4871A;
+    padding: 10px 20px;
+    height: auto;
+    text-wrap: nowrap;
+}
+.orangeGlow {
+  color: white;
+    background-color: #F4871A;
+    box-shadow: 0 0 15px 5px rgba(244, 135, 26, 0.7);
+    transition: all 0.6 ease;
+    transform: scale(1.05);
+    animation: pulseGlow 1100ms infinite alternate;
+}
+
+/* Анимация пульсации */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 5px 1px rgba(244, 135, 26, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 20px 8px rgba(244, 135, 26, 0.9);
+    }
+}
+@media (max-width: 950px) {
+    .field {
+        font-size: 16px;
+        width: auto;
+        text-align: center;
+        white-space: wrap;
+    }
+    .orange, .gray{
+        width: auto;
+        height: auto;
+        font-size: 16px;
+    }
+   
+
+}
+@media (max-width: 450px) {
+    .field {
+        font-size: 14px;
+        width: auto;
+        text-align: center;
+        white-space: wrap;
+    }
+    .orange, .gray{
+        width: auto;
+        height: auto;
+        font-size: 13px;
+    }
+
+}
+@media screen and (max-width: 550px) {
+    .transparentOrange, .transparentGray{
+        width: auto;
+        font-size: 14px;
+        text-align: center;
+        white-space: wrap;
+        padding: 30px;
+    }
+    .compact{
+        padding: 12px 10px;
+    }
+    .transparentOrangePrice{
+        padding: 10px 10px;
+        height: auto;
+        text-wrap: nowrap;
+    }
+}
+/* @keyframes microPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(250, 194, 139, 0.2);
+  }
+  50% {
+    transform: scale(1.015);
+    box-shadow: 0 0 22px rgba(252, 218, 184, 0.7);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(252, 218, 184, 0.2);
+  }
+} */
+@keyframes clickPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes autoClick {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+  }
+  20% {
+    transform: scale(0.94);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+  }
+  40% {
+    transform: scale(1);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+  }
+}
+

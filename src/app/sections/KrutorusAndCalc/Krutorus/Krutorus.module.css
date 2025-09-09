@@ -1,0 +1,53 @@
+.krutorus{
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+@media (min-width: 1024px){
+    .krutorus{
+       padding: 0 2rem; 
+    }
+    
+}
+@media (max-width: 1300px) {
+    .krutorus {
+        width: 85%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .krutorus {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .krutorus {
+        width: 95%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 320px) {
+    .krutorus {
+        width: 97%;
+        margin-bottom: 15px;
+    }
+}
+.topAndCalc {
+    display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+}
+
+@media (min-width: 1320px) {
+  .topAndCalc {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 2rem;
+  }
+}

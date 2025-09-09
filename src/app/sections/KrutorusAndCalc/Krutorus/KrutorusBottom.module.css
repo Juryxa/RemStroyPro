@@ -1,0 +1,255 @@
+.krutorusBottom{
+    position: relative;
+    z-index: 2;
+    border: 2px solid #F4871A;
+    border-radius: 50px;
+    display: flex;
+    font-size: 15px;
+    font-weight: 400;
+    height: 400px;
+    width: 100%;
+    max-width: 1360px;
+    margin: 2rem auto 0 auto;
+    padding: 0 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+@media (max-width: 768px) {
+  .krutorusBottom {
+    padding: 0 1rem;
+  }
+}
+.images{
+    display: flex;
+    width: 25%;
+    position: relative;
+    z-index: 5;
+    pointer-events: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.man{
+    position: absolute;
+    bottom: 0;
+    left: -170px;
+}
+.cloud{
+    position: absolute;
+    top: -70px;
+    left: calc(400px - 170px);
+}
+.fieldsAndButton {
+    position: relative;
+    z-index: 5;
+    align-self: center;
+    justify-self: flex-end;
+    width: 64%;
+}
+.fieldsOpacity{
+    max-width: 400px;
+    width: 100%;
+    opacity: 60%;
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    transition: opacity 0.5s ease;
+}
+.fields{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    /* margin: 60px; */
+}
+.arrowLeft{
+    position: absolute;
+    right: 0;
+    bottom: -20;
+    user-select: none;
+    transition: none;
+}
+.imagestone{
+    position: relative;
+    user-select: none;
+    transform: rotate(-118deg);
+}
+.stone1{
+    position: absolute;
+    z-index: 0;
+    bottom: -120px;
+    right: -65px;
+    filter: blur(5px);
+}
+.tgbtn{
+    margin-left: 520px;
+}
+.link{
+    color: white;
+}
+.link:hover{
+    color: #cccccc;
+}
+.link:active{
+    color: #9C9C9C;
+}
+.linkDecoration{
+    text-decoration: white underline;
+}
+@media (max-width: 1024px) {
+    .krutorusBottom {
+        height: 350px;
+    }
+    .man {
+        height: 400px;
+        left: -130px;
+    }
+    .cloud {
+        left: calc(380px - 130px);
+        height: 110px;
+    }
+    .fields {
+        margin: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .krutorusBottom {
+        height: 300px;
+    }
+    .cloud {
+        left: calc(300px - 100px);
+        height: 90px;
+        top: -30px;
+    }
+    .fields {
+        margin: 30px;
+    }
+    .stone1 {
+        bottom: 40px;
+        right: -100px;
+        width: 180px;
+    }
+}
+
+@media (max-width: 930px) {
+    .krutorusBottom{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .man {
+        display: none;
+    }
+    .cloud {
+        display: none;
+    }
+    .stone1 {
+        display: none;
+    }
+}
+
+@media (max-width: 580px) {
+    .krutorusBottom {
+        height: auto;
+        padding: 0 20px 0 20px;
+        flex-direction: column;
+        border: none;
+        margin: 0;
+    }
+    .fieldsAndButton{
+        width: 100%;
+    }
+    .fields {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 15px 0;
+        gap: 15px;
+    }
+    .fieldsOpacity{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .arrowLeft {
+        display: none;
+    }
+    .tgbtn {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+
+}
+
+@media (max-width: 320px) {
+    .krutorusBottom {
+        width: 97%;
+        margin: 10px auto;
+        padding: 15px;
+        border-radius: 25px;
+    }
+    .fields {
+        margin: 10px 0;
+        gap: 10px;
+    }
+    .linkDecoration {
+        font-size: 14px;
+    }
+}
+@keyframes slideLeftFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-150px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRightFade {
+  0% {
+    opacity: 0;
+    transform: translateX(150px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animateLeft {
+  animation: slideLeftFade 1s ease-out forwards;
+}
+
+.animateRight {
+  animation: slideRightFade 2s ease-out forwards;
+}
+@keyframes drawArrow {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.1) translateY(-20px);
+  }
+  60% {
+    opacity: 1;
+    transform: scaleY(1) translateY(0);
+  }
+  75% {
+    transform: scaleY(1) translateY(-6px);
+  }
+  100% {
+    transform: scaleY(1) translateY(0);
+  }
+}
+.animateDrawArrow {
+  animation: drawArrow 2s ease-out forwards;
+  transform-origin: top center;
+}

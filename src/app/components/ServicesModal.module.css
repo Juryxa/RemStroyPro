@@ -1,0 +1,363 @@
+/* ServicesModal.module.css */
+.customModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.customModal {
+    position: relative;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: 50px;
+}
+
+.customModal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("/krutorusTopBg.webp");
+    transform: scale(-1, 1);
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(1px);
+    z-index: -1;
+}
+
+.customModal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.closeButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 40px;
+    font-weight: 100;
+    cursor: pointer;
+    color: white;
+    transition: color 0.2s;
+    line-height: 1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeButton:hover {
+    color: #d5d5d5;
+}
+
+.modalTitle {
+    color: white;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+.modalForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    gap: 50px;
+    justify-content: space-around;
+}
+
+.modalInputs {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    width: 80%;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.formGroup label {
+    text-align: left;
+    width: 100%;
+    padding-left: 15px;
+}
+
+.gray {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #F4871A;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(2px);
+    border-radius: 30px;
+    padding: 12px 15px;
+    width: 100%;
+    min-height: 60px;
+}
+
+.gray label {
+    color: #FFFFFF;
+    font-size: 18px;
+    flex-shrink: 0;
+    width: 30%;
+}
+
+.readOnlyInput {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    width: 65%;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.green {
+    background-color: #7D9A6AB0;
+    border-radius: 20px;
+    padding: 12px 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 7px black;
+    border: none;
+    min-height: 60px;
+}
+
+.green label {
+    color: #FFFFFFAB;
+    font-size: 18px;
+    font-weight: 400;
+    flex-shrink: 0;
+    width: 30%;
+}
+
+.editableInput {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    width: 65%;
+    text-align: right;
+    outline: none;
+}
+
+.editableInput::placeholder {
+    color: rgba(255, 255, 255, 0.67);
+    opacity: 1;
+    font-weight: 400;
+}
+
+.requiredField:not(:focus) {
+    border-color: #ff6b6b;
+}
+
+.submitButton {
+    background: rgba(255, 255, 255, 0.3);
+    font-size: 20px;
+    width: 100%;
+    color: white;
+    border-radius: 30px;
+    padding: 14px 20px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+    box-shadow: 0 0 9px 2px rgb(255, 138, 22), inset 0 0 9px 3px #F7CCA3;
+}
+
+.submitButton:hover {
+    scale: 1.02;
+}
+
+.submitButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.submitButton:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .customModal {
+        padding: 20px;
+        border-radius: 30px;
+        height: auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modalTitle {
+        font-size: 24px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+
+    .modalForm {
+        gap: 30px;
+    }
+
+    .modalInputs {
+        width: 90%;
+        gap: 15px;
+    }
+
+    .gray, .green {
+        min-height: 50px;
+        padding: 10px 12px;
+    }
+
+    .gray label, .green label {
+        font-size: 16px;
+        width: 35%;
+    }
+
+    .readOnlyInput, .editableInput {
+        font-size: 16px;
+        width: 60%;
+    }
+
+    .submitButton {
+        font-size: 18px;
+        padding: 12px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .customModal {
+        padding: 15px;
+        border-radius: 25px;
+        width: 95%;
+    }
+
+    .closeButton {
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .modalTitle {
+        font-size: 22px;
+        margin-top: 15px;
+    }
+
+    .modalForm {
+        gap: 20px;
+    }
+
+    .modalInputs {
+        width: 95%;
+        gap: 12px;
+    }
+
+    .gray, .green {
+        min-height: 45px;
+        padding: 8px 10px;
+    }
+
+    .gray label, .green label {
+        font-size: 14px;
+        width: 40%;
+    }
+
+    .readOnlyInput, .editableInput {
+        font-size: 14px;
+        width: 55%;
+    }
+
+    .submitButton {
+        font-size: 16px;
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 320px) {
+    .customModal {
+        padding: 12px;
+        border-radius: 20px;
+    }
+
+    .modalTitle {
+        font-size: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .modalForm {
+        gap: 15px;
+    }
+
+    .gray, .green {
+        min-height: 40px;
+        padding: 6px 8px;
+        border-radius: 15px;
+    }
+
+    .gray label, .green label {
+        font-size: 13px;
+        padding-left: 8px;
+    }
+
+    .readOnlyInput, .editableInput {
+        font-size: 13px;
+    }
+
+    .submitButton {
+        font-size: 15px;
+        padding: 8px 10px;
+    }
+}
