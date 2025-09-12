@@ -1,5 +1,5 @@
 'use client';
-import {useCallback, useEffect, useState, useRef} from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import styles from './Calc.module.css';
 import Image from "next/image";
 import tg from 'public/tg.svg'
@@ -397,7 +397,7 @@ export default function Calc() {
         setName('');
         setPhone('');
     };
-    // таймер 2 мин 
+    // таймер 2 мин
     const [timer, setTimer] = useState(120); // 2 минуты
     const [timerExpired, setTimerExpired] = useState(false);
 
@@ -412,7 +412,6 @@ export default function Calc() {
         }
         if (timer === 0) {
             // Например: скрыть скидку или показать сообщение
-            console.log('Время вышло');
         }
     }, [step, timer]);
 
@@ -472,7 +471,7 @@ export default function Calc() {
                             {!timerExpired && (
                                 <p className={styles.discount}>
                                     <span className={styles.underline}>Скидка</span> <span className={styles.orange}>15%</span> для Вас на первый замер! Получите её <span className={styles.orange}>после</span> расчёта.
-                        
+
                                 </p>
                             )}
                             {!timerExpired && (

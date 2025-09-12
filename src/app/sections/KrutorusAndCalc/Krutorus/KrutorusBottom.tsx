@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import styles from './KrutorusBottom.module.css'
 import Image from "next/image";
 import BuilderImage from "public/man.png"
@@ -9,6 +9,7 @@ import stone1 from "public/stone.png"
 import Field from "@/app/components/Field";
 import Link from "next/link";
 import TelegramBlueButton from "@/app/components/TelegramBlueButton";
+import Calc from "@/app/sections/KrutorusAndCalc/Calc/Calc";
 
 function KrutorusBottom() {
     const orangeRef = useRef<HTMLDivElement>(null);
@@ -39,6 +40,7 @@ function KrutorusBottom() {
 
     return (
         <div className={styles.krutorusBottom}>
+            <Calc/>
             <div className={styles.images}>
                 <Image className={styles.man} src={BuilderImage} alt="строитель" height={456} />
                 <Image className={styles.cloud} src={CloudImage} alt="Узнайте стоимость любой работы!" height={126} />

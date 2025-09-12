@@ -1,53 +1,198 @@
-.krutorus{
+.krutorus {
     display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+    gap: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: white;
 }
-@media (min-width: 1024px){
-    .krutorus{
-       padding: 0 2rem; 
-    }
-    
+.krutorus h1{
+    font-size: 48px;
+    font-weight: 600;
+    text-align: center;
+    width: 80%;
+    margin-bottom: 30px
 }
-@media (max-width: 1300px) {
-    .krutorus {
-        width: 85%;
-        margin-left: 0;
-    }
+.description{
+    font-size: 16px;
+    text-align: center;
 }
-
-@media (max-width: 768px) {
-    .krutorus {
-        width: 90%;
-    }
-}
-
-@media (max-width: 480px) {
-    .krutorus {
-        width: 95%;
-        margin-bottom: 20px;
-    }
-}
-
-@media (max-width: 320px) {
-    .krutorus {
-        width: 97%;
-        margin-bottom: 15px;
-    }
-}
-.topAndCalc {
+.achievments{
     display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 2rem;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.achievment{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 16px;
+    align-items: center;
+    width: 33.3%;
+}
+.strong{
+    font-size: 26px;
+}
+.discountSection{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.calculation{
+    font-size: 36px;
+    font-weight: 600;
+}
+.calculationDesc{
+    margin-top: 5px;
+    width: 30%;
+    text-align: center;
+    font-size: 15px;
 }
 
-@media (min-width: 1320px) {
-  .topAndCalc {
+.form{
+    display: flex;
+    margin-top: 40px;
+    width: 80%;
+    justify-content: center;
+    gap: 15px;
+}
+
+/*Слайдер*/
+.container {
+    text-wrap: nowrap;
+    display: flex;
+    width: 400px;
+    height: 48px;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: #9C9C9C99;
+    position: relative;
+}
+
+.button {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+    position: relative;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 10px 40px;
+}
+
+.slider {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background-color: #BA650F;
+    border-radius: 30px;
+    left: 0;
+    top: 0;
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+.slider.right {
+    transform: translateX(100%);
+}
+@media screen and (max-width: 500px) {
+    .container {
+        width: 300px;
+    }
+}
+
+/*телефон*/
+.phoneInput {
+    display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 0 2rem;
-  }
+}
+
+.planGray {
+    display: flex;
+    user-select: none;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #F4871A;
+    background: #6C6B6C75;
+    border-radius: 20px;
+    padding: 10px 40px;
+    height: 48px;
+}
+.planEditableInput {
+    background: transparent;
+    text-align: center;
+    border: none;
+    color: white; /* вводимые цифры */
+    outline: none;
+    user-select: text;
+    font-size: 16px;
+    width: 100%;
+}
+.planEditableInput::placeholder {
+    color: #FFFFFFAB; /* placeholder */
+    opacity: 1;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+}
+
+select.planEditableInput option:hover {
+    background: #F4871A;
+}
+
+.container,
+.planGray,
+.planSubmitButton {
+    width: 360px;
+    height: 48px;
+}
+/*кнопка*/
+.planSubmitButton {
+    background: #F4871A;
+    font-size: 20px;
+    color: white;
+    border-radius: 30px;
+    height: 48px;
+    padding: 10px 40px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 9px 2px rgb(255, 138, 22);
+    text-wrap: nowrap;
+}
+
+.planSubmitButton:hover {
+    transition: ease-in-out 0.2s;
+    transform: scale(1.02);
+}
+.planSubmitButton:active{
+    transition: ease-in-out 0.1s;
+    transform: scale(0.98);
+}
+
+/*tg*/
+
+.linkBlock{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: 28%;
+}
+
+.tgLink{
+    display: flex;
+    gap: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+.tgLink:hover{
+    color: #cacaca;
 }

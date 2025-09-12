@@ -1,7 +1,6 @@
 'use client'
 import styles from "./page.module.css";
-import Nav from "@/app/sections/Nav/Nav";
-import KrutorusAndCalc from "@/app/sections/KrutorusAndCalc/KrutorusAndCalc";
+import KrutorusMain from "@/app/sections/KrutorusAndCalc/KrutorusMain";
 import Services from "@/app/sections/Services/Services";
 import TgOrange from "@/app/components/TgOrange";
 import Plan from "@/app/sections/Plan/Plan";
@@ -9,6 +8,7 @@ import HowWeWork from "@/app/sections/HowWeWork/HowWeWork";
 import AboutUs from "@/app/sections/AboutUs/AboutUs";
 import Footer from "@/app/sections/Footer/Footer";
 import {useEffect, useState} from 'react';
+import KrutorusBottom from "@/app/sections/KrutorusAndCalc/Krutorus/KrutorusBottom";
 
 export default function Home() {
     const [activeSection, setActiveSection] = useState('krutorus');
@@ -52,8 +52,8 @@ export default function Home() {
 
     return (
         <div className={styles.page}>
-            <Nav activeSection={activeSection} />
-            <section id='krutorus'><KrutorusAndCalc/></section>
+            <section id='krutorus'><KrutorusMain activeSection={activeSection}/></section>
+            <section id='krutorusBottom'><KrutorusBottom/></section>
             <TgOrange/>
             <section id="services"><Services/></section>
             <section id="plan"><Plan/></section>

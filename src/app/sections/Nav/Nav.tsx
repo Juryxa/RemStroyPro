@@ -1,96 +1,99 @@
 'use client';
-import styles from './Nav.module.css';
-import { Button } from "@/app/components/Button";
-import { useEffect, useState } from 'react';
+import styles from './Nav.module.css'
+import Image from "next/image";
+import logo from 'public/logo.svg'
+import geo from 'public/geo.svg'
+import phone from 'public/phone.svg'
+import tg from 'public/tg.svg'
+import Link from "next/link";
+import PlanModal from "@/app/components/PlanModal";
+import {useState} from "react";
 
-interface NavProps {
-    activeSection: string;
-}
+function Nav({ activeSection }: { activeSection: string }) {
 
-function Nav({ activeSection }: NavProps) {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
-    const [isReady, setIsReady] = useState(false); // 🆕
-
-    useEffect(() => {
-        const handleResize = () => {
-            const mobile = window.innerWidth < 700;
-            setIsMobile(mobile);
-            if (!mobile) {
-                setIsMenuOpen(false);
-            }
-        };
-
-        handleResize(); // Первичная установка
-        setIsReady(true); // ✅ После первого определения — разрешаем рендер
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    const toggleMenu = () => {
-        setIsMenuOpen(prev => !prev);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const handleFormSubmit = (data: { name: string; phone: string; projectType: string }) => {
+        setModalIsOpen(false);
     };
 
     const scrollToSection = (id: string) => {
         const el = document.getElementById(id);
         if (el) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            setIsMenuOpen(false);
+            el.scrollIntoView({behavior: 'smooth', block: 'start'});
         }
     };
 
     const navItems = [
-        { id: 'krutorus', label: 'Главная' },
-        { id: 'calculator', label: 'Калькулятор' },
-        { id: 'services', label: 'Услуги' },
-        { id: 'plan', label: 'Разработка проектов' },
-        { id: 'howwework', label: 'Условия работы' },
-        { id: 'aboutus', label: 'О нас' }
+        {id: 'krutorus', label: 'Главная'},
+        {id: 'calculator', label: 'Калькулятор'},
+        {id: 'services', label: 'Услуги'},
+        {id: 'plan', label: 'Разработка проектов'},
+        {id: 'howwework', label: 'Условия работы'},
+        {id: 'aboutus', label: 'О нас'}
     ];
 
-    // 🔐 До инициализации — ничего не показываем
-    if (!isReady) return null;
 
     return (
-    <nav className={`${styles.nav} ${isMobile ? styles.mobileNav : ''} ${styles.navAnimate}`}>
-        <div className={styles.buttons}>
-            {isMobile ? (
-                <>
-                    <div className={styles.hamburgerRow}>
-                        <span className={styles.mobileBrand}>РемСтройПро</span>
-                        <div className={styles.hamburger} onClick={toggleMenu}>
-                            <div className={`${styles.hamburgerLine} ${isMenuOpen ? styles.open : ''}`}></div>
-                            <div className={`${styles.hamburgerLine} ${isMenuOpen ? styles.open : ''}`}></div>
-                            <div className={`${styles.hamburgerLine} ${isMenuOpen ? styles.open : ''}`}></div>
-                        </div>
+        <nav className={styles.nav}>
+
+            <div className={styles.logoWrap}>
+                <Image src={logo} alt={'лого'}/>
+                <p className={styles.logoName}>РЕМСТРОЙПРО</p>
+            </div>
+
+            <div className={styles.infoWrap}>
+
+                <div className={styles.infoTop}>
+                    <div className={styles.withSvg}>
+                        <Image src={geo} alt={'гео'} width={17} height={26}/>
+                        <p>
+                            Работаем по <u>МСК</u> и <u>МО</u>
+                        </p>
                     </div>
-                    <div className={`${styles.mobileMenu} ${isMenuOpen ? styles.open : ''}`}>
-                        {navItems.map(item => (
-                            <Button
-                                key={item.id}
-                                pressed={activeSection === item.id}
+                    <button className={styles.discount} onClick={() => scrollToSection('discount')}>
+                        Получить расчёт со скидкой -15%
+                    </button>
+                    <div className={styles.withSvg}>
+                        <Image src={phone} alt={'телефон'} width={27} height={27}/>
+                        <Link className={styles.phone} href="tel:+79999817129">+7 (999) 981-71-29</Link>
+                    </div>
+                    <button className={styles.recall} onClick={() => setModalIsOpen(true)}>
+                        Перезвонить мне
+                    </button>
+                </div>
+
+                <div className={styles.infoBottom}>
+                    {navItems.map((item, index) => {
+                        return (
+                            <button
+                                key={index}
+                                className={`${styles.link} ${activeSection === item.id ? styles.activeLink : ''}`}
                                 onClick={() => scrollToSection(item.id)}
                             >
                                 {item.label}
-                            </Button>
-                        ))}
+                            </button>
+                        )
+                    })}
+
+                    <div className={styles.withSvg}>
+                        {/* Telegram */}
+                        <Link
+                            href="https://t.me/remstroyprobot?start=HeaderButton"
+                        >
+                            <Image src={tg} alt="telegram" width={32} height={27} />
+                        </Link>
+                        <Link className={styles.mail} href="mailto:remstroiipro@gmail.com">remstroiipro@gmail.com</Link>
                     </div>
-                </>
-            ) : (
-                navItems.map(item => (
-                    <Button
-                        key={item.id}
-                        pressed={activeSection === item.id}
-                        onClick={() => scrollToSection(item.id)}
-                    >
-                        {item.label}
-                    </Button>
-                ))
-            )}
-        </div>
-    </nav>
-);
+                </div>
+
+            </div>
+            <PlanModal
+                isOpen={modalIsOpen}
+                onClose={() => setModalIsOpen(false)}
+                onSubmit={handleFormSubmit}
+            />
+        </nav>
+    );
 
 }
 
