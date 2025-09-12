@@ -46,6 +46,19 @@ func CreateLayoutTgMsg(req request.Layout) string {
 	)
 }
 
+func CreateLayout2TgMsg(req request.Layout2) string {
+	if req.Name == "" || req.Name == " " {
+		req.Name = "не указано"
+	}
+
+	return fmt.Sprintf(
+		"📋 Новая заявка!\n\n"+
+			"👤 Имя: %s\n"+
+			"📞 Телефон: %s",
+		req.Name, req.Phone,
+	)
+}
+
 func CreateCalcTgMsg(req request.Calc) string {
 	if req.Name == "" || req.Name == " " {
 		req.Name = "не указано"

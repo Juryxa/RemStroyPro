@@ -61,6 +61,7 @@ func main() {
 	{
 		r.POST("/service", h.HandleServiceRequest)
 		r.POST("/layout", h.HandleLayoutRequest)
+		r.POST("/layout2", h.HandleLayout2Request)
 		r.POST("/calc", h.HandleCalcRequest)
 	}
 
