@@ -5,6 +5,7 @@ import calendar from 'public/calendar.svg'
 import house from 'public/house.svg'
 import m2 from 'public/m2.svg'
 import tg from 'public/tgBlueMain.svg'
+import wa from 'public/whatsapp.svg'
 import {useState} from "react";
 import Link from "next/link";
 
@@ -114,9 +115,12 @@ function Krutorus() {
                 </form>
             </div>
             <div className={styles.linkBlock}>
+                <p>Или задайте вопросы в месcенджере</p>
                 <Link href='https://t.me/remstroyprobot?start=BottomMain' className={styles.tgLink}>
-                    <p>Или задайте вопросы в месcенджере</p>
-                    <Image src={tg} alt="tg" width={23} height={17} className={styles.tgBlue} />
+                    <Image src={tg} alt="tg" width={30} height={25} className={styles.tgBlue} />
+                </Link>
+                <Link href='https://wa.me/+79999817129' className={styles.waLink}>
+                    <Image src={wa} alt="whatsapp" width={35} height={39} className={styles.wa} />
                 </Link>
             </div>
         </section>

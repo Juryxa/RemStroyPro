@@ -1,8 +1,8 @@
 .calcSection{
     position: absolute;
     z-index: 7;
-    width: 450px;
-    min-width: 450px;
+    max-width: 450px;
+    min-width: 320px;
     margin: auto auto;
     display: flex;
     flex-direction: column;
@@ -20,7 +20,7 @@
     flex-direction: column;
     justify-content: space-around;
     height: 100%;
-    min-width: 100%;
+    width: 100%;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     animation: slideUp 0.4s ease;
     z-index: 2;
@@ -94,11 +94,17 @@
     color: white;
     font-size: 26px;
     padding: 10px 20px;
-    background-color: #2422234D;
+    background-color: #F4871A;
     text-align: center;
     margin-bottom: 10px;
     font-weight: 600;
     margin-top: 0;
+}
+
+@media (max-width: 1320px) {
+    .title{
+        background-color: #2422234D;
+    }
 }
 
 .title1 {
@@ -906,29 +912,6 @@
     }
 }
 
-@media (max-height: 700px) {
-    /* .calcSection {
-        height: auto;
-        min-height: 100vh;
-    }
-
-    .calc {
-        min-height: 100vh;
-    }
-
-    .stepContent, .stepContent4 {
-        min-height: 100vh;
-    } */
-
-    .center, .center1 {
-        margin-top: 0;
-        justify-content: flex-start;
-    }
-
-    /* .footer {
-        margin-top: auto;
-    } */
-}
 
 @media (max-width: 480px) {
     .calcSection {
@@ -937,6 +920,7 @@
 
     .calc {
         border-radius: 30px;
+        width: 90%;
     }
 
     .calc::before, .calc::after {
@@ -1028,7 +1012,19 @@
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 430px) {
+    .calc{
+        width: 80%;
+    }
+}
+
+@media (max-width: 380px) {
+    .calcSection{
+        margin-right: 30px;
+    }
+    .calc{
+        width: 80%;
+    }
     .title {
         font-size: 22px;
     }
@@ -1079,9 +1075,18 @@
         font-size: 13px;
     }
 }
+@media (max-width: 360px) {
+    .calc{
+        width: 75%;
+    }
+}
 @media (max-width: 768px) {
+    .title{
+        background-color: #2422234D;
+        width: 90%;
+        align-self: center;
+    }
     .calcSection {
-        max-width: 100%;
         padding: 10px;
     }
 

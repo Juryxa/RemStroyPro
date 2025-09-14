@@ -413,7 +413,7 @@ export default function Calc() {
                 {/* Шаг 0: Выбор типа услуги */}
                 {step === 0 && (
                     <div className={styles.stepContent}>
-                        <h1 className={styles.title}>Калькулятор</h1>
+                        <h2 className={styles.title}>Калькулятор</h2>
                         <div className={styles.center}>
                             <p className={styles.description}>Рассчитай стоимость за 3 шага — Выбери тип услуги</p>
 
@@ -457,8 +457,8 @@ export default function Calc() {
                 {/* Шаг 1: Для ремонта - выбор типа недвижимости */}
                 {step === 1 && serviceType === 'repair' && (
                     <div className={styles.stepContent}>
-                        <h1 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери где будем
-                            ремонтировать!</h1>
+                        <h3 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери где будем
+                            ремонтировать!</h3>
                         <div className={styles.center1}>
                             <div
                                 className={styles.backOption}
@@ -496,7 +496,7 @@ export default function Calc() {
                 {/* Шаг 1: Для стройки - выбор местоположения */}
                 {step === 1 && serviceType === 'building' && (
                     <div className={styles.stepContent}>
-                        <h1 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери место строительства</h1>
+                        <h3 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери место строительства</h3>
                         <div className={styles.center1}>
                             <div
                                 className={styles.backOption}
@@ -534,7 +534,7 @@ export default function Calc() {
                 {/* Шаг 2: Для ремонта - выбор площади */}
                 {step === 2 && serviceType === 'repair' && (
                     <div className={styles.stepContent}>
-                        <h1 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери площадь</h1>
+                        <h3 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери площадь</h3>
                         <div className={styles.center1}>
                             <div className={styles.selectedOptions}>
                                 <div
@@ -613,7 +613,7 @@ export default function Calc() {
                 {/* Шаг 2: Для стройки - выбор площади */}
                 {step === 2 && serviceType === 'building' && (
                     <div className={styles.stepContent}>
-                        <h1 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери площадь</h1>
+                        <h3 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери площадь</h3>
                         <div className={styles.center1}>
                             <div className={styles.selectedOptions}>
                                 <div
@@ -692,7 +692,7 @@ export default function Calc() {
                 {/* Шаг 3: Для ремонта - выбор типа ремонта */}
                 {step === 3 && serviceType === 'repair' && (
                     <div className={styles.stepContent}>
-                        <h1 className={styles.title1}>Рассчитай стоимость за 3 шага — Это последний шаг!</h1>
+                        <h3 className={styles.title1}>Рассчитай стоимость за 3 шага — Это последний шаг!</h3>
                         <div className={styles.center1}>
                             <div className={styles.selectedOptions}>
                                 <div
@@ -746,7 +746,7 @@ export default function Calc() {
                 {/* Шаг 3: Для стройки - выбор вида строительства */}
                 {step === 3 && serviceType === 'building' && (
                     <div className={styles.stepContent}>
-                        <h1 className={styles.title1}>Рассчитай стоимость за 3 шага — Это последний шаг!</h1>
+                        <h3 className={styles.title1}>Рассчитай стоимость за 3 шага — Это последний шаг!</h3>
                         <div className={styles.center1}>
                             <div className={styles.selectedOptions}>
                                 <div
@@ -804,7 +804,7 @@ export default function Calc() {
                 {/* Итоговый шаг */}
                 {step === 5 && (
                     <div className={styles.stepContent4}>
-                        <h1 className={styles.title1}>Можем сделать это ещё раз!</h1>
+                        <h3 className={styles.title1}>Можем сделать это ещё раз!</h3>
                         <div className={styles.center4}>
                             <div className={styles.result}>
                                 {serviceType === 'repair'

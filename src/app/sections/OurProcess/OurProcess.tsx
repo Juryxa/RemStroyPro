@@ -11,8 +11,8 @@ function OurProcess() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setActiveIndex(prev => (prev >= fields.length - 1 ? -1 : prev + 1))
-        }, 2100)
+            setActiveIndex(prev => (prev >= fields.length - 1 ? 0 : prev + 1))
+        }, 2500)
 
         return () => clearInterval(interval)
     }, [fields.length])

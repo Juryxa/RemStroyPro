@@ -23,7 +23,7 @@ export default function Completed({ files }: CompletedProps) {
     const positionRef = useRef(0);
     const animationRef = useRef<number>(0);
     const contentWidthRef = useRef(0);
-    const speed = 1.5;
+    const speed = 1;
 
     // drag refs
     const isDraggingRef = useRef(false);

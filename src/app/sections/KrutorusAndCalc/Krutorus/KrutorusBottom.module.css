@@ -20,7 +20,19 @@
     transform: scale(1.05);
     z-index: 0;
 }
-
+.calc{
+    position: absolute;
+    z-index: 7;
+    width: 450px;
+    min-width: 450px;
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    gap: 30px;
+    border-radius: 50px;
+    border: none;
+}
 .images {
     position: relative;
     width: 100%;
@@ -58,6 +70,9 @@
     gap: 70px;
     z-index: 10; /* выше картинки */
 }
+.iconsOnBottomMob{
+    display: none;
+}
 
 /* Gray cloud по центру */
 .cloudGray {
@@ -69,6 +84,9 @@
 }
 
 /* Blue cloud с текстом */
+.blueRectMob{
+    display: none;
+}
 .cloudBlueWrap {
     position: relative;
     margin-top: 20px;
@@ -83,6 +101,7 @@
 .cloudInfo{
     display: flex;
     position: absolute;
+    align-items: center;
     top: 34%;
     left: 50%;
     gap: 15px;
@@ -121,18 +140,115 @@
 
 }
 
-/* адаптив */
-@media (max-width: 768px) {
-    .krutorusBottom {
-        padding: 0 1rem;
+@media (max-width: 1480px){
+    .cloudBlue{
+        width: 400px;
     }
-    .man {
+    .cloudInfo{
+        font-size: 13px;
+    }
+    .man{
+        left: 60%;
+        top: 34%;
+    }
+}
+
+@media (max-width: 1320px){
+    .krutorusBottom{
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        gap: 55px;
+        padding: 40px 20px;
+    }
+    .calc{
+        align-self: center;
         position: relative;
-        left: auto;
-        margin-top: 20px;
-        height: 300px;
+        margin: 0 auto; /* Центрируем */
     }
-    .cloudText {
-        font-size: 14px;
+    .iconsOnBottom{
+        position: static;
+    }
+    .bottom, .cloudBlue, .cloudInfo{
+        display: none;
+    }
+    .iconsOnBottom{
+        display: none;
+    }
+    .blueRectMob{
+        position: absolute;
+        display: flex;
+        align-items: center;
+        background-color: #0088CC;
+        border-radius: 30px;
+        padding: 10px 30px;
+        min-height: 80px;
+        text-align: center;
+        gap: 20px;
+        z-index: 7;
+        bottom: 10%;
+        margin: 0 20px;
+    }
+    .blueRectMob p{
+        color: white;
+    }
+    .images{
+        position: relative;
+        flex-direction: row;
+        align-items: center;
+    }
+    .cloudGray{
+        position: relative;
+        height: 100px;
+        width: auto;
+        align-self: flex-start;
+    }
+    .man{
+        position: relative;
+        height: 456px;
+        width: auto;
+        left: -10%;
+    }
+    .iconsOnBottomMob {
+        margin-top: 50px;
+        display: flex;
+        gap: 70px;
+        z-index: 5;
+    }
+
+}
+@media (max-width: 1200px) {
+    .cloudGray{
+        position: relative;
+        height: 70px;
+        width: auto;
+        align-self: flex-start;
+    }
+    .man{
+        position: relative;
+        height: 360px;
+        width: auto;
+        left: -10%;
+    }
+}
+
+@media (max-width: 600px) {
+    .man{
+        height: 320px;
+    }
+}
+@media (max-width: 510px) {
+    .cloudGray{
+        left: 0;
+    }
+    .man{
+        left: -35%;
+    }
+}
+@media (max-width: 400px) {
+
+    .man{
+        height: 300px;
+        left: -57%;
     }
 }
