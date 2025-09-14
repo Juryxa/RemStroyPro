@@ -1,69 +1,70 @@
 .completed {
-    position: relative;
-    overflow: hidden;
     width: 100%;
-    height: 250px;
-    will-change: transform;
-    contain: none;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
     user-select: none;
-    padding: 25px 0;
-    box-sizing: border-box;
-    touch-action: none;
-    backface-visibility: hidden;
-    perspective: 1000px;
+    touch-action: pan-y;
 }
 
 .marqueeContainer {
     display: flex;
-    white-space: nowrap;
     will-change: transform;
-    position: absolute;
-    top: 25px;
-    left: 0;
-    transform: translate3d(0,0,0);
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
-    transition: transform 0.1s linear; /* Плавное обновление позиции */
 }
 
 .marqueeContent {
     display: flex;
-    transform: translateZ(0);
 }
 
-.imageContainer {
-    flex-shrink: 0;
-    position: relative;
+.card {
+    flex: 0 0 auto;
     width: 330px;
     height: 200px;
-    margin: 0 15px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: visible;
-    z-index: 1;
-    transform: translateZ(0);
-    will-change: transform;
+    margin: 0 12px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: grab;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.imageContainer:hover {
+.card:active {
+    cursor: grabbing;
+}
+
+.card:hover {
     transform: scale(1.05);
-    z-index: 10;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
 
 .image {
-    object-fit: cover;
-    border-radius: 20px;
-    display: block;
     width: 100%;
     height: 100%;
-    transition: transform 0.3s ease;
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    object-fit: cover;
+    display: block;
 }
 
-.imageContainer:hover .image {
-    transform: scale(1.05);
+/* Видео */
+.videoWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.playIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: white;
+    text-shadow: 0 0 10px rgba(0,0,0,0.7);
+    pointer-events: none;
 }

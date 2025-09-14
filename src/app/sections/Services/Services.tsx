@@ -386,7 +386,19 @@ export default function Services() {
                 )}
             </div>
 
-            <Completed/>
+            <Completed files={[
+                { type: 'image', src: '/works/2.webp' },
+                { type: 'video', src: '/works/1.mp4' },
+                { type: 'image', src: '/works/3.webp' },
+                { type: 'image', src: '/works/4.webp' },
+                { type: 'image', src: '/works/5.webp' },
+                { type: 'image', src: '/works/6.webp' },
+                { type: 'video', src: '/works/2.mp4' },
+                { type: 'image', src: '/works/7.webp' },
+                { type: 'image', src: '/works/8.webp' },
+                { type: 'image', src: '/works/9.webp' },
+                { type: 'image', src: '/works/10.webp' },
+            ]}/>
             <ServicesModal
                 isOpen={modalIsOpen}
                 onClose={closeModal}

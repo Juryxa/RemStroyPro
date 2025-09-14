@@ -1,5 +1,6 @@
 .main {
     position: relative;
+    z-index: 3;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -7,12 +8,13 @@
     gap: 20px;
     height: 100%;
     width: 100vw;
-
+    padding-bottom: 30px;
     /* фон */
-    background-image: url("public/mainTopBg.webp");
+    background-image: url("/mainTopBg.webp");
     background-size: cover;
     background-position: center;
     overflow: hidden;
+    box-shadow: 0 1px 5px black;
 }
 
 /* блюр */
@@ -25,6 +27,7 @@
     transform: scale(1.05); /* чтобы не было пустых краёв */
     z-index: 0;
 }
+
 
 /* шум */
 .main::after {

@@ -3,347 +3,175 @@
 import {useEffect, useRef, useState} from 'react';
 import styles from './Completed.module.css';
 import Image from 'next/image';
-import ImageModal from './ImageModal'; // путь может быть другим, укажи свой
+import ImageModal from './ImageModal';
 
+type MediaFile = {
+    type: 'image' | 'video';
+    src: string;
+};
 
-const mediaFiles = [
-    '/works/1.webp',
-    '/works/2.webp',
-    '/works/3.webp',
-    '/works/4.webp',
-    '/works/5.webp',
-    '/works/6.webp',
-    '/works/7.webp',
-    '/works/8.webp',
-    '/works/9.webp',
-    '/works/10.webp',
-    '/works/11.webp',
-    '/works/12.webp',
-    '/works/13.webp',
-    '/works/14.webp',
-    '/works/15.webp',
-];
+interface CompletedProps {
+    files: MediaFile[];
+}
 
-export default function Completed() {
-    const [isPlaying, setIsPlaying] = useState(true);
+export default function Completed({ files }: CompletedProps) {
+    const [modalImage, setModalImage] = useState<string | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const innerRef = useRef<HTMLDivElement>(null);
-    const animationRef = useRef<number>(0);
-    const positionRef = useRef(0);
-    const speed = 1.5; // Увеличена скорость
     const contentRef = useRef<HTMLDivElement>(null);
-    const isPlayingRef = useRef(isPlaying);
 
-    // Refs для управления перетаскиванием
+    const positionRef = useRef(0);
+    const animationRef = useRef<number>(0);
+    const contentWidthRef = useRef(0);
+    const speed = 1.5;
+
+    // drag refs
     const isDraggingRef = useRef(false);
     const dragStartX = useRef(0);
-    const dragStartPosition = useRef(0);
+    const dragStartPos = useRef(0);
+    const velocityRef = useRef(0);
     const lastX = useRef(0);
     const lastTime = useRef(0);
-    const velocityRef = useRef(0);
-    const isDragRef = useRef(false);
     const inertiaRef = useRef(false);
-    const clickAllowedRef = useRef(true);
-    const lastFrameTimeRef = useRef<number | null>(null);
-    const contentWidthRef = useRef(0); // Для хранения ширины контента
+    const movedRef = useRef(false); // <--- новое: следим, двигался ли пользователь
 
-    useEffect(() => {
-        isPlayingRef.current = isPlaying;
-    }, [isPlaying]);
-
-    useEffect(() => {
-        const handleVisibilityChange = () => {
-            const shouldPlay = document.visibilityState === 'visible';
-            setIsPlaying(shouldPlay);
-            isPlayingRef.current = shouldPlay;
-
-            // Сбрасываем время последнего кадра при смене вкладки
-            lastFrameTimeRef.current = null;
-
-            // Возобновляем анимацию при возврате
-            if (shouldPlay && !isDraggingRef.current && !inertiaRef.current) {
-                animationRef.current = requestAnimationFrame(animate);
-            }
-        };
-
-        document.addEventListener('visibilitychange', handleVisibilityChange);
-        return () => {
-            document.removeEventListener('visibilitychange', handleVisibilityChange);
-            cancelAnimationFrame(animationRef.current);
-        };
-    }, []);
-
-    // Корректировка позиции для бесшовной анимации
+    // === корректировка позиции ===
     const correctPosition = () => {
         const contentWidth = contentWidthRef.current;
-        if (contentWidth === 0) return;
-
-        let newPosition = positionRef.current;
-
-        // Плавная коррекция без скачков
-        while (newPosition <= -contentWidth) {
-            newPosition += contentWidth;
+        if (!contentWidth) return;
+        if (positionRef.current <= -contentWidth) {
+            positionRef.current += contentWidth;
         }
-        while (newPosition > 0) {
-            newPosition -= contentWidth;
-        }
-
-        // Плавное обновление позиции
-        if (Math.abs(newPosition - positionRef.current) > contentWidth / 2) {
-            positionRef.current = newPosition;
-            if (innerRef.current) {
-                innerRef.current.style.transform = `translate3d(${positionRef.current}px, 0, 0)`;
-            }
-        } else {
-            positionRef.current = newPosition;
+        if (positionRef.current >= 0) {
+            positionRef.current -= contentWidth;
         }
     };
 
-    // Основная функция анимации с учетом времени
-    const animate = (timestamp: number) => {
-        if (!lastFrameTimeRef.current) {
-            lastFrameTimeRef.current = timestamp;
-        }
-
-        const deltaTime = Math.min(timestamp - lastFrameTimeRef.current, 100); // Ограничиваем deltaTime
-        lastFrameTimeRef.current = timestamp;
-
-        if (!isPlayingRef.current || isDraggingRef.current || inertiaRef.current) {
+    // === авто-анимация ===
+    const animate = () => {
+        if (!innerRef.current || !contentWidthRef.current) {
             animationRef.current = requestAnimationFrame(animate);
             return;
         }
 
-        // Учитываем время для плавной анимации
-        positionRef.current -= speed * (deltaTime / 16);
-        correctPosition();
-
-        if (innerRef.current) {
-            innerRef.current.style.transform = `translate3d(${positionRef.current}px, 0, 0)`;
+        if (!isDraggingRef.current && !inertiaRef.current) {
+            positionRef.current -= speed;
+            correctPosition();
+            innerRef.current.style.transform = `translateX(${positionRef.current}px)`;
         }
+
         animationRef.current = requestAnimationFrame(animate);
     };
 
     useEffect(() => {
-        if (!containerRef.current || !innerRef.current || !contentRef.current) return;
+        if (!contentRef.current) return;
 
-        const inner = innerRef.current;
         const content = contentRef.current;
+        contentWidthRef.current = content.offsetWidth;
 
-        const clone = content.cloneNode(true) as HTMLDivElement;
-        inner.appendChild(clone);
+        if (innerRef.current && content) {
+            const clone = content.cloneNode(true);
+            innerRef.current.appendChild(clone);
+        }
 
-        // Функция для обновления ширины контента
-        const updateContentWidth = () => {
-            if (contentRef.current) {
-                contentWidthRef.current = contentRef.current.offsetWidth;
-            }
-        };
+        animationRef.current = requestAnimationFrame(animate);
 
-        // Инициализация позиции после отрисовки контента
-        const initPosition = () => {
-            updateContentWidth();
-            const contentWidth = contentWidthRef.current;
-
-            if (contentWidth > 0) {
-                // Плавная установка начальной позиции
-                positionRef.current = -contentWidth / 2;
-                correctPosition();
-
-                if (innerRef.current) {
-                    innerRef.current.style.transition = 'transform 0.5s ease-out';
-                    innerRef.current.style.transform = `translate3d(${positionRef.current}px, 0, 0)`;
-
-                    // Убираем переход после завершения
-                    setTimeout(() => {
-                        if (innerRef.current) {
-                            innerRef.current.style.transition = '';
-                        }
-                    }, 500);
-                }
-                return true;
-            }
-            return false;
-        };
-
-        // Запуск основной анимации
-        const startAnimation = () => {
-            if (initPosition()) {
-                animationRef.current = requestAnimationFrame(animate);
-            } else {
-                // Повторяем попытку, если контент еще не загружен
-                setTimeout(startAnimation, 50);
-            }
-        };
-
-        startAnimation();
-
-        // Обновляем ширину при изменении размера окна
-        const resizeObserver = new ResizeObserver(updateContentWidth);
-        resizeObserver.observe(content);
-
-        return () => {
-            resizeObserver.disconnect();
-            cancelAnimationFrame(animationRef.current);
-            if (clone.parentNode === inner) {
-                inner.removeChild(clone);
-            }
-        };
+        return () => cancelAnimationFrame(animationRef.current);
     }, []);
 
-    // Обработчики событий мыши
-    const handleMouseDown = (e: React.MouseEvent) => {
-        if (e.button !== 0) return;
-        startDrag(e.clientX);
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-        if (!isDraggingRef.current) return;
-        moveDrag(e.clientX);
-    };
-
-    const handleMouseUp = (e: MouseEvent) => {
-        if (isDraggingRef.current) {
-            endDrag();
-        }
-    };
-
-    // Обработчики событий касания
-    const handleTouchStart = (e: React.TouchEvent) => {
-        if (e.touches.length !== 1) return;
-        startDrag(e.touches[0].clientX);
-        e.preventDefault();
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-        if (!isDraggingRef.current || e.touches.length !== 1) return;
-        moveDrag(e.touches[0].clientX);
-        e.preventDefault();
-    };
-
-    const handleTouchEnd = (e: TouchEvent) => {
-        if (isDraggingRef.current) {
-            endDrag();
-        }
-    };
-
-    // Начало перетаскивания
+    // === drag start ===
     const startDrag = (clientX: number) => {
-        if (!innerRef.current) return;
-
-        // Сбрасываем время анимации
-        lastFrameTimeRef.current = null;
-
-        cancelAnimationFrame(animationRef.current);
         isDraggingRef.current = true;
-        isDragRef.current = false;
-        clickAllowedRef.current = true;
         dragStartX.current = clientX;
-        dragStartPosition.current = positionRef.current;
+        dragStartPos.current = positionRef.current;
         lastX.current = clientX;
         lastTime.current = Date.now();
         velocityRef.current = 0;
         inertiaRef.current = false;
-
-        if (innerRef.current) {
-            innerRef.current.style.transition = 'none';
-        }
-
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', handleMouseUp);
-        document.addEventListener('touchmove', handleTouchMove as any, { passive: false });
-        document.addEventListener('touchend', handleTouchEnd);
+        movedRef.current = false; // сброс флага
     };
 
-    // Перемещение при перетаскивании
+    // === drag move ===
     const moveDrag = (clientX: number) => {
-        if (!innerRef.current) return;
+        if (!isDraggingRef.current || !innerRef.current) return;
 
-        const currentX = clientX;
-        const deltaX = currentX - dragStartX.current;
+        const delta = clientX - dragStartX.current;
+        if (Math.abs(delta) > 5) movedRef.current = true; // >5px считаем движением
 
-        positionRef.current = dragStartPosition.current + deltaX;
-        innerRef.current.style.transform = `translate3d(${positionRef.current}px, 0, 0)`;
+        positionRef.current = dragStartPos.current + delta;
+        correctPosition();
+        innerRef.current.style.transform = `translateX(${positionRef.current}px)`;
 
-        const currentTime = Date.now();
-        const deltaTime = currentTime - lastTime.current;
-
-        if (deltaTime > 0) {
-            velocityRef.current = 0.7 * velocityRef.current + 0.3 * (currentX - lastX.current) / deltaTime;
+        const now = Date.now();
+        const dt = now - lastTime.current;
+        if (dt > 0) {
+            velocityRef.current =
+                0.8 * velocityRef.current + 0.2 * ((clientX - lastX.current) / dt);
         }
-
-        lastX.current = currentX;
-        lastTime.current = currentTime;
-
-        if (Math.abs(deltaX) > 5) {
-            isDragRef.current = true;
-            clickAllowedRef.current = false;
-        }
+        lastX.current = clientX;
+        lastTime.current = now;
     };
 
-    // Завершение перетаскивания с инерцией
+    // === drag end (с инерцией) ===
     const endDrag = () => {
         if (!isDraggingRef.current) return;
         isDraggingRef.current = false;
 
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-        document.removeEventListener('touchmove', handleTouchMove as any);
-        document.removeEventListener('touchend', handleTouchEnd);
-
         if (Math.abs(velocityRef.current) > 0.05) {
-            startInertia();
-        } else {
-            // Плавное возобновление анимации
-            setTimeout(() => {
-                isPlayingRef.current = true;
-                setIsPlaying(true);
-                animationRef.current = requestAnimationFrame(animate);
-            }, 50);
+            inertiaRef.current = true;
+            const inertia = () => {
+                if (!innerRef.current) return;
+                positionRef.current += velocityRef.current * 16;
+                correctPosition();
+                innerRef.current.style.transform = `translateX(${positionRef.current}px)`;
+                velocityRef.current *= 0.95;
+
+                if (Math.abs(velocityRef.current) > 0.01) {
+                    requestAnimationFrame(inertia);
+                } else {
+                    inertiaRef.current = false;
+                }
+            };
+            inertia();
         }
     };
 
-    // Анимация инерции
-    const startInertia = () => {
-        cancelAnimationFrame(animationRef.current);
-        inertiaRef.current = true;
-
-        const inertiaAnimate = (timestamp: number) => {
-            if (!lastFrameTimeRef.current) {
-                lastFrameTimeRef.current = timestamp;
-            }
-
-            const deltaTime = Math.min(timestamp - lastFrameTimeRef.current, 100);
-            lastFrameTimeRef.current = timestamp;
-
-            if (Math.abs(velocityRef.current) < 0.01) {
-                inertiaRef.current = false;
-                isPlayingRef.current = true;
-                setIsPlaying(true);
-                animationRef.current = requestAnimationFrame(animate);
-                return;
-            }
-
-            positionRef.current += velocityRef.current * deltaTime;
-            velocityRef.current *= 0.96; // Более плавное замедление
-
-            correctPosition();
-
-            if (innerRef.current) {
-                innerRef.current.style.transform = `translate3d(${positionRef.current}px, 0, 0)`;
-            }
-
-            animationRef.current = requestAnimationFrame(inertiaAnimate);
-        };
-
-        animationRef.current = requestAnimationFrame(inertiaAnimate);
+    const handleMouseDown = (e: React.MouseEvent) => {
+        if (e.button !== 0) return;
+        startDrag(e.clientX);
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mouseup', handleMouseUp);
     };
 
-    const [modalImage, setModalImage] = useState<string | null>(null);
-    const openModalImage = (src: string) => {
-        if (!clickAllowedRef.current) return;
-        setModalImage(src);
+    const handleMouseMove = (e: MouseEvent) => moveDrag(e.clientX);
+
+    const handleMouseUp = () => {
+        endDrag();
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('mouseup', handleMouseUp);
     };
 
+    const handleTouchStart = (e: React.TouchEvent) => {
+        if (e.touches.length !== 1) return;
+        startDrag(e.touches[0].clientX);
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        if (e.touches.length !== 1) return;
+        moveDrag(e.touches[0].clientX);
+    };
+
+    const handleTouchEnd = () => endDrag();
+
+    // === клик по медиа ===
+    const handleClick = (file: MediaFile) => {
+        if (movedRef.current) return; // если был drag — игнорим клик
+        if (file.type === 'image') {
+            setModalImage(file.src);
+        } else if (file.type === 'video') {
+            window.open(file.src, '_blank');
+        }
+    };
 
     return (
         <div
@@ -351,34 +179,45 @@ export default function Completed() {
             ref={containerRef}
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
         >
             <div className={styles.marqueeContainer} ref={innerRef}>
                 <div ref={contentRef} className={styles.marqueeContent}>
-                    {mediaFiles.map((src, index) => (
+                    {files.map((file, index) => (
                         <div
-                            key={`${index}-${src}`}
-                            className={styles.imageContainer}
-                            onClick={() => openModalImage(src)}
+                            key={`${index}-${file.src}`}
+                            className={styles.card}
+                            onClick={() => handleClick(file)}
                         >
-                            <Image
-                                src={src}
-                                alt={`Work ${index + 1}`}
-                                width={330}
-                                height={200}
-                                quality={100}
-                                className={styles.image}
-                                loading="eager"
-                                onLoad={() => {
-                                    if (contentRef.current) {
-                                        contentWidthRef.current = contentRef.current.offsetWidth;
-                                        correctPosition();
-                                    }
-                                }}
-                            />
+                            {file.type === 'image' ? (
+                                <Image
+                                    src={file.src}
+                                    alt={`Media ${index + 1}`}
+                                    width={330}
+                                    height={200}
+                                    quality={100}
+                                    className={styles.image}
+                                />
+                            ) : (
+                                <div className={styles.videoWrapper}>
+                                    <video
+                                        src={file.src}
+                                        width={330}
+                                        height={200}
+                                        muted
+                                        playsInline
+                                        preload="metadata"
+                                        className={styles.video}
+                                    />
+                                    <div className={styles.playIcon}>▶</div>
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>
             </div>
+
             {modalImage && (
                 <ImageModal
                     isOpen={true}

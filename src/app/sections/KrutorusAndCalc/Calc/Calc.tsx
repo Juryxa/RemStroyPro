@@ -1,11 +1,7 @@
 'use client';
-import {useCallback, useEffect, useRef, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import styles from './Calc.module.css';
 import Image from "next/image";
-import tg from 'public/tg.svg'
-import mail from 'public/mail.svg'
-import phoneIcon from 'public/phone-icon.svg'
-import Link from "next/link";
 import {createPortal} from "react-dom";
 import arrowSig from 'public/arrowZig.png'
 import Head from "next/head";
@@ -216,32 +212,6 @@ export default function Calc() {
     const formatPrice = (price: number) => {
         return new Intl.NumberFormat('ru-RU').format(price) + ' руб.';
     };
-
-    // Телефон логика
-    const [showDropdown, setShowDropdown] = useState(false);
-    const iconRef = useRef<HTMLDivElement | null>(null)
-
-
-    const phoneNumbers = [
-        { name: 'Сергей', number: '+7 (999) 981-71-29' },
-        { name: 'Алексей', number: '+7 (916) 265-50-90' },
-    ];
-
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-            if (iconRef.current && !iconRef.current.contains(event.target as Node)) {
-            setShowDropdown(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        document.addEventListener('touchstart', handleClickOutside);
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-            document.removeEventListener('touchstart', handleClickOutside);
-        };
-        }, []);
 
     const renderModal = () => {
         const isRepair = serviceType === 'repair';
@@ -870,42 +840,7 @@ export default function Calc() {
                     </div>
                 )}
             </section>
-            <div className={styles.images}>
-                {/* Телефон */}
-                <div
-                    className={styles.iconWrapper}
-                    onClick={() => setShowDropdown(!showDropdown)}
-                    ref={iconRef}
-                >
-                    <Image src={phoneIcon} alt="phone" width={40} height={40} priority/>
-                    {showDropdown && (
-                        <div className={styles.dropdown}>
-                        {phoneNumbers.map((item, i) => (
-                            <a
-                                key={i}
-                                href={`tel:${item.number.replace(/[^0-9+]/g, '')}`}
-                                onClick={() => {
-                                    if (typeof window !== 'undefined' && typeof window.ym === 'function') {
-                                        if (item.name === 'Сергей') {
-                                            window.ym(103620695, 'reachGoal', 'phoneS');
-                                        } else if (item.name === 'Алексей') {
-                                            window.ym(103620695, 'reachGoal', 'phoneAle');
-                                        }
-                                    }
-                                }}
-                            >
-                                {item.name}: {item.number}
-                            </a>
-                        ))}
-                        </div>
-                    )}
-                </div>
-                <Link href={'https://t.me/remstroyprobot?start=GrayUnderCalc'}
-                      className={styles.iconLink}><Image src={tg} alt="telegram" width={40}
-                                                         height={40} priority/></Link>
-                <Link href={'mailto:remstroiipro@gmail.com'} className={styles.iconLink}><Image src={mail} alt="email" width={40}
-                                                                    height={40} priority/></Link>
-            </div>
+
         </section>
     );
 }

@@ -101,9 +101,14 @@
 .slider.right {
     transform: translateX(100%);
 }
-@media screen and (max-width: 500px) {
-    .container {
+
+@media screen and (max-width: 400px) {
+    .container{
         width: 300px;
+    }
+    .button {
+        font-size: 12px;
+        padding: 7px 20px;
     }
 }
 
@@ -147,7 +152,6 @@ select.planEditableInput option:hover {
     background: #F4871A;
 }
 
-.container,
 .planGray,
 .planSubmitButton {
     width: 360px;
@@ -195,4 +199,87 @@ select.planEditableInput option:hover {
 
 .tgLink:hover{
     color: #cacaca;
+}
+
+@media screen and (max-width: 1400px) {
+    .achievments {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+
+    }
+
+    .achievment {
+        width: 30%;
+        font-size: 14px;
+    }
+
+    .achievment:nth-child(1),
+    .achievment:nth-child(3) {
+        transform: scale(0.7) translateY(-70px); /* поменьше и выше */
+        height: 100%;
+    }
+
+    .achievment:nth-child(2) {
+        transform: scale(1); /* центральная больше */
+    }
+
+    /* discount */
+    .form {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .phoneInput {
+        order: 1;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        order: 2;
+        height: 42px; /* пониже */
+    }
+
+    .button {
+        font-size: 13px; /* уменьшенный текст */
+    }
+    .planSubmitButton {
+        order: 3;
+        font-size: 18px;
+    }
+}
+
+/* 📱 Мобильная версия */
+@media screen and (max-width: 1024px) {
+    .krutorus h1{
+        font-size: 38px;
+        text-align: center;
+        width: 98%;
+        margin-bottom: 30px;
+    }
+    .description{
+        font-size: 14px;
+        width: 90%;
+    }
+
+    .calculationDesc{
+        width: 80%;
+    }
+
+}
+@media screen and (max-width: 500px) {
+    .krutorus h1{
+        margin-bottom: 0;
+    }
+    .planSubmitButton {
+        width: 110%;
+    }
+    .linkBlock{
+        font-size: 13px;
+        margin-top: 30px;
+        margin-left: 5%;
+    }
 }

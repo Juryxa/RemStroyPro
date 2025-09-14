@@ -21,7 +21,7 @@
     gap: 15px;
 }
 
-.logoWrap {
+.logoWrapDesc {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -134,10 +134,211 @@
     text-decoration: none;
 }
 
-.infoWrap .mail {
+.infoWrap .mail, .mobileMenu .mail {
     color: #888179;
 }
 
-.infoWrap .mail:hover {
+.infoWrap .mail:hover, .mobileMenu .mail:active {
     color: #c3bdb5;
+}
+
+/* выпадающее меню */
+.mobileMenu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background: #1f1e1e;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    gap: 15px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 7;
+}
+
+.mobileMenu.show {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.mobileLink {
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 16px;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+/* --- адаптив --- */
+
+
+/* Лого */
+.logoWrapMob{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.logoWrapMob img {
+    max-width: 120px; /* уменьшаем */
+    height: auto;
+}
+
+/* Бургер скрыт по дефолту */
+.burger {
+    display: none;
+    flex-direction: column;
+    background-color: transparent;
+    justify-content: space-between;
+    width: 30px;
+    height: 23px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+.circle{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #F4871A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.burger span {
+    display: block;
+    height: 4px;
+    background: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Телефон */
+.phone,
+.phone:visited,
+.phone:hover,
+.phone:active {
+    color: white !important;
+    text-decoration: none;
+}
+@media screen and (min-width: 1400px) {
+    .mobileWrap, .burger {
+        display: none;
+    }
+}
+
+/* Показываем бургер только на мобиле */
+@media screen and (max-width: 1400px) {
+    .logoWrapDesc{
+        display: none;
+    }
+    .burger {
+        display: flex;
+    }
+}
+
+
+@media screen and (max-width: 1400px) {
+    .infoWrap {
+        display: none; /* скрываем десктоп */
+    }
+
+    .mobileWrap {
+        display: flex;
+        align-self: center;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .centerBlock{
+        display: flex;
+        flex-direction: column;
+        justify-self: center;
+        align-self: center;
+    }
+    .tgPhone{
+        display: flex;
+        gap: 25px;
+    }
+
+    .phone {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .recall {
+        border-radius: 30px;
+        border: 2px solid #F4871A;
+        background: transparent;
+        color: white;
+        font-size: 14px;
+        padding: 5px 20px;
+        cursor: pointer;
+    }
+
+    .burger {
+        display: flex;
+    }
+}
+
+/* более жёсткий адаптив под 320px */
+@media screen and (max-width: 480px) {
+    .logoName{
+        font-size: 14px;
+    }
+    .phone {
+        font-size: 16px;
+    }
+    .recall {
+        font-size: 12px;
+        padding: 4px 15px;
+    }
+    .burger {
+        gap: 4px;
+        width: 20px;
+        height: 15px;
+    }
+    .circle{
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .logoWrapMob img{
+        max-width: 40px;
+        height: auto;
+    }
+    .logoName{
+        font-size: 12px;
+    }
+    .phone {
+        font-size: 12px;
+    }
+    .recall {
+        font-size: 11px;
+        padding: 4px 12px;
+    }
+}
+@media screen and (max-width: 340px) {
+    .logoWrapMob img{
+        max-width: 35px;
+        height: auto;
+    }
+    .phone {
+        font-size: 10px;
+    }
+    .recall {
+        font-size: 9px;
+        padding: 4px 10px;
+    }
 }

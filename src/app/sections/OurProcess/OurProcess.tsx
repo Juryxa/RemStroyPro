@@ -30,7 +30,13 @@ function OurProcess() {
                     </Field>
                 ))}
             </div>
-            <Completed/>
+            <Completed files={[
+                { type: 'image', src: '/works/11.webp' },
+                { type: 'image', src: '/works/12.webp' },
+                { type: 'image', src: '/works/13.webp' },
+                { type: 'image', src: '/works/14.webp' },
+                { type: 'image', src: '/works/15.webp' },
+            ]}/>
         </section>
     )
 }
