@@ -1,255 +1,254 @@
-.krutorusBottom{
+.krutorusBottom {
     position: relative;
     z-index: 2;
-    border: 2px solid #F4871A;
-    border-radius: 50px;
     display: flex;
-    font-size: 15px;
-    font-weight: 400;
-    height: 400px;
+    align-items: center;
     width: 100%;
-    max-width: 1360px;
-    margin: 2rem auto 0 auto;
-    padding: 0 2rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    height: 850px;
+    padding: 2rem 10%;
+    background-image: url("/krutorusBottomBg.webp");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
 }
-@media (max-width: 768px) {
-  .krutorusBottom {
-    padding: 0 1rem;
-  }
-}
-.images{
-    display: flex;
-    width: 25%;
-    position: relative;
-    z-index: 5;
-    pointer-events: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-.man{
+.krutorusBottom::before {
+    content: "";
     position: absolute;
-    bottom: 0;
-    left: -170px;
-}
-.cloud{
-    position: absolute;
-    top: -70px;
-    left: calc(400px - 170px);
-}
-.fieldsAndButton {
-    position: relative;
-    z-index: 5;
-    align-self: center;
-    justify-self: flex-end;
-    width: 64%;
-}
-.fieldsOpacity{
-    max-width: 400px;
-    width: 100%;
-    opacity: 60%;
-    display: flex;
-    gap: 30px;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    transition: opacity 0.5s ease;
-}
-.fields{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 30px;
-    /* margin: 60px; */
-}
-.arrowLeft{
-    position: absolute;
-    right: 0;
-    bottom: -20;
-    user-select: none;
-    transition: none;
-}
-.imagestone{
-    position: relative;
-    user-select: none;
-    transform: rotate(-118deg);
-}
-.stone1{
-    position: absolute;
+    inset: 0;
+    background: inherit;
+    filter: blur(4px) brightness(35%);
+    transform: scale(1.05);
     z-index: 0;
-    bottom: -120px;
-    right: -65px;
-    filter: blur(5px);
 }
-.tgbtn{
-    margin-left: 520px;
+.calc{
+    position: absolute;
+    z-index: 7;
+    width: 450px;
+    min-width: 450px;
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    gap: 30px;
+    border-radius: 50px;
+    border: none;
 }
-.link{
+.images {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+    user-select: none;
+}
+
+/* отключаем клики только для декоративных картинок */
+.cloudGray,
+.man,
+.bottom {
+    pointer-events: none;
+}
+
+/* иконки на Bottom */
+.iconsOnBottom,
+.iconWrapper,
+.cloudBlue,
+.phoneIcon,
+.cloudText,
+.iconLink {
+    pointer-events: auto; /* включаем клики */
+}
+
+.iconsOnBottom {
+    position: absolute;
+    bottom: 0%; /* примерно середина Bottom.svg по высоте */
+    left: 60%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 70px;
+    z-index: 10; /* выше картинки */
+}
+.iconsOnBottomMob{
+    display: none;
+}
+
+/* Gray cloud по центру */
+.cloudGray {
+    position: relative;
+    z-index: 5;
+    margin: 0 auto;
+    top: 27%;
+    left: 19%;
+}
+
+/* Blue cloud с текстом */
+.blueRectMob{
+    display: none;
+}
+.cloudBlueWrap {
+    position: relative;
+    margin-top: 20px;
+    top: 40%;
+    right: -10%;
+    display: inline-block;
+}
+.cloudBlue {
+    display: block;
+    margin: 0 auto;
+}
+.cloudInfo{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    top: 34%;
+    left: 50%;
+    gap: 15px;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.4;
+    color: #fff;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Строитель справа от GrayCloud */
+.man {
+    position: absolute;
+    transform: scaleX(-1);
+    left: 65%;
+    top: 31%;
+    height: 456px;
+    width: auto;
+    z-index: 5;
+}
+
+/* Bottom внизу */
+.bottom {
+    position: absolute;
+    bottom: -10%;
+    left: -5%;
+    width: 130%;
+    height: auto;
+    z-index: 5;
+}
+.tgUnderscore{
     color: white;
+
 }
-.link:hover{
-    color: #cccccc;
-}
-.link:active{
-    color: #9C9C9C;
-}
-.linkDecoration{
-    text-decoration: white underline;
-}
-@media (max-width: 1024px) {
-    .krutorusBottom {
-        height: 350px;
+
+@media (max-width: 1480px){
+    .cloudBlue{
+        width: 400px;
     }
-    .man {
-        height: 400px;
-        left: -130px;
+    .cloudInfo{
+        font-size: 13px;
     }
-    .cloud {
-        left: calc(380px - 130px);
-        height: 110px;
-    }
-    .fields {
-        margin: 40px;
+    .man{
+        left: 60%;
+        top: 34%;
     }
 }
 
-@media (max-width: 768px) {
-    .krutorusBottom {
-        height: 300px;
-    }
-    .cloud {
-        left: calc(300px - 100px);
-        height: 90px;
-        top: -30px;
-    }
-    .fields {
-        margin: 30px;
-    }
-    .stone1 {
-        bottom: 40px;
-        right: -100px;
-        width: 180px;
-    }
-}
-
-@media (max-width: 930px) {
+@media (max-width: 1320px){
     .krutorusBottom{
-        display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-    }
-    .man {
-        display: none;
-    }
-    .cloud {
-        display: none;
-    }
-    .stone1 {
-        display: none;
-    }
-}
-
-@media (max-width: 580px) {
-    .krutorusBottom {
         height: auto;
-        padding: 0 20px 0 20px;
-        flex-direction: column;
-        border: none;
-        margin: 0;
+        gap: 55px;
+        padding: 40px 20px;
     }
-    .fieldsAndButton{
-        width: 100%;
+    .calc{
+        align-self: center;
+        position: relative;
+        margin: 0 auto; /* Центрируем */
     }
-    .fields {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: 15px 0;
-        gap: 15px;
+    .iconsOnBottom{
+        position: static;
     }
-    .fieldsOpacity{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .arrowLeft {
+    .bottom, .cloudBlue, .cloudInfo{
         display: none;
     }
-    .tgbtn {
-        margin-left: 0;
-        margin-top: 15px;
+    .iconsOnBottom{
+        display: none;
+    }
+    .blueRectMob{
+        position: absolute;
+        display: flex;
+        align-items: center;
+        background-color: #0088CC;
+        border-radius: 30px;
+        padding: 10px 30px;
+        min-height: 80px;
+        text-align: center;
+        gap: 20px;
+        z-index: 7;
+        bottom: 10%;
+        margin: 0 20px;
+    }
+    .blueRectMob p{
+        color: white;
+    }
+    .images{
+        position: relative;
+        flex-direction: row;
+        align-items: center;
+    }
+    .cloudGray{
+        position: relative;
+        height: 100px;
+        width: auto;
+        align-self: flex-start;
+    }
+    .man{
+        position: relative;
+        height: 456px;
+        width: auto;
+        left: -10%;
+    }
+    .iconsOnBottomMob {
+        margin-top: 50px;
+        display: flex;
+        gap: 70px;
+        z-index: 5;
     }
 
 }
-
-@media (max-width: 320px) {
-    .krutorusBottom {
-        width: 97%;
-        margin: 10px auto;
-        padding: 15px;
-        border-radius: 25px;
+@media (max-width: 1200px) {
+    .cloudGray{
+        position: relative;
+        height: 70px;
+        width: auto;
+        align-self: flex-start;
     }
-    .fields {
-        margin: 10px 0;
-        gap: 10px;
-    }
-    .linkDecoration {
-        font-size: 14px;
+    .man{
+        position: relative;
+        height: 360px;
+        width: auto;
+        left: -10%;
     }
 }
-@keyframes slideLeftFade {
-  0% {
-    opacity: 0;
-    transform: translateX(-150px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 
-@keyframes slideRightFade {
-  0% {
-    opacity: 0;
-    transform: translateX(150px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+@media (max-width: 600px) {
+    .man{
+        height: 320px;
+    }
 }
+@media (max-width: 510px) {
+    .cloudGray{
+        left: 0;
+    }
+    .man{
+        left: -35%;
+    }
+}
+@media (max-width: 400px) {
 
-.animateLeft {
-  animation: slideLeftFade 1s ease-out forwards;
-}
-
-.animateRight {
-  animation: slideRightFade 2s ease-out forwards;
-}
-@keyframes drawArrow {
-  0% {
-    opacity: 0;
-    transform: scaleY(0.1) translateY(-20px);
-  }
-  60% {
-    opacity: 1;
-    transform: scaleY(1) translateY(0);
-  }
-  75% {
-    transform: scaleY(1) translateY(-6px);
-  }
-  100% {
-    transform: scaleY(1) translateY(0);
-  }
-}
-.animateDrawArrow {
-  animation: drawArrow 2s ease-out forwards;
-  transform-origin: top center;
+    .man{
+        height: 300px;
+        left: -57%;
+    }
 }

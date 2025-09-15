@@ -1,11 +1,7 @@
 'use client';
-import {useCallback, useEffect, useState, useRef} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import styles from './Calc.module.css';
 import Image from "next/image";
-import tg from 'public/tg.svg'
-import mail from 'public/mail.svg'
-import phoneIcon from 'public/phone-icon.svg'
-import Link from "next/link";
 import {createPortal} from "react-dom";
 import arrowSig from 'public/arrowZig.png'
 import Head from "next/head";
@@ -217,32 +213,6 @@ export default function Calc() {
         return new Intl.NumberFormat('ru-RU').format(price) + ' руб.';
     };
 
-    // Телефон логика
-    const [showDropdown, setShowDropdown] = useState(false);
-    const iconRef = useRef<HTMLDivElement | null>(null)
-
-
-    const phoneNumbers = [
-        { name: 'Сергей', number: '+7 (999) 981-71-29' },
-        { name: 'Алексей', number: '+7 (916) 265-50-90' },
-    ];
-
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-            if (iconRef.current && !iconRef.current.contains(event.target as Node)) {
-            setShowDropdown(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        document.addEventListener('touchstart', handleClickOutside);
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-            document.removeEventListener('touchstart', handleClickOutside);
-        };
-        }, []);
-
     const renderModal = () => {
         const isRepair = serviceType === 'repair';
         const isBuilding = serviceType === 'building';
@@ -397,7 +367,7 @@ export default function Calc() {
         setName('');
         setPhone('');
     };
-    // таймер 2 мин 
+    // таймер 2 мин
     const [timer, setTimer] = useState(120); // 2 минуты
     const [timerExpired, setTimerExpired] = useState(false);
 
@@ -412,7 +382,6 @@ export default function Calc() {
         }
         if (timer === 0) {
             // Например: скрыть скидку или показать сообщение
-            console.log('Время вышло');
         }
     }, [step, timer]);
 
@@ -444,7 +413,7 @@ export default function Calc() {
                 {/* Шаг 0: Выбор типа услуги */}
                 {step === 0 && (
                     <div className={styles.stepContent}>
-                        <h1 className={styles.title}>Калькулятор</h1>
+                        <h2 className={styles.title}>Калькулятор</h2>
                         <div className={styles.center}>
                             <p className={styles.description}>Рассчитай стоимость за 3 шага — Выбери тип услуги</p>
 
@@ -472,7 +441,7 @@ export default function Calc() {
                             {!timerExpired && (
                                 <p className={styles.discount}>
                                     <span className={styles.underline}>Скидка</span> <span className={styles.orange}>15%</span> для Вас на первый замер! Получите её <span className={styles.orange}>после</span> расчёта.
-                        
+
                                 </p>
                             )}
                             {!timerExpired && (
@@ -488,8 +457,8 @@ export default function Calc() {
                 {/* Шаг 1: Для ремонта - выбор типа недвижимости */}
                 {step === 1 && serviceType === 'repair' && (
                     <div className={styles.stepContent}>
-                        <h1 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери где будем
-                            ремонтировать!</h1>
+                        <h3 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери где будем
+                            ремонтировать!</h3>
                         <div className={styles.center1}>
                             <div
                                 className={styles.backOption}
@@ -527,7 +496,7 @@ export default function Calc() {
                 {/* Шаг 1: Для стройки - выбор местоположения */}
                 {step === 1 && serviceType === 'building' && (
                     <div className={styles.stepContent}>
-                        <h1 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери место строительства</h1>
+                        <h3 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери место строительства</h3>
                         <div className={styles.center1}>
                             <div
                                 className={styles.backOption}
@@ -565,7 +534,7 @@ export default function Calc() {
                 {/* Шаг 2: Для ремонта - выбор площади */}
                 {step === 2 && serviceType === 'repair' && (
                     <div className={styles.stepContent}>
-                        <h1 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери площадь</h1>
+                        <h3 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери площадь</h3>
                         <div className={styles.center1}>
                             <div className={styles.selectedOptions}>
                                 <div
@@ -644,7 +613,7 @@ export default function Calc() {
                 {/* Шаг 2: Для стройки - выбор площади */}
                 {step === 2 && serviceType === 'building' && (
                     <div className={styles.stepContent}>
-                        <h1 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери площадь</h1>
+                        <h3 className={styles.title1}>Рассчитай стоимость за 3 шага — Выбери площадь</h3>
                         <div className={styles.center1}>
                             <div className={styles.selectedOptions}>
                                 <div
@@ -723,7 +692,7 @@ export default function Calc() {
                 {/* Шаг 3: Для ремонта - выбор типа ремонта */}
                 {step === 3 && serviceType === 'repair' && (
                     <div className={styles.stepContent}>
-                        <h1 className={styles.title1}>Рассчитай стоимость за 3 шага — Это последний шаг!</h1>
+                        <h3 className={styles.title1}>Рассчитай стоимость за 3 шага — Это последний шаг!</h3>
                         <div className={styles.center1}>
                             <div className={styles.selectedOptions}>
                                 <div
@@ -777,7 +746,7 @@ export default function Calc() {
                 {/* Шаг 3: Для стройки - выбор вида строительства */}
                 {step === 3 && serviceType === 'building' && (
                     <div className={styles.stepContent}>
-                        <h1 className={styles.title1}>Рассчитай стоимость за 3 шага — Это последний шаг!</h1>
+                        <h3 className={styles.title1}>Рассчитай стоимость за 3 шага — Это последний шаг!</h3>
                         <div className={styles.center1}>
                             <div className={styles.selectedOptions}>
                                 <div
@@ -835,7 +804,7 @@ export default function Calc() {
                 {/* Итоговый шаг */}
                 {step === 5 && (
                     <div className={styles.stepContent4}>
-                        <h1 className={styles.title1}>Можем сделать это ещё раз!</h1>
+                        <h3 className={styles.title1}>Можем сделать это ещё раз!</h3>
                         <div className={styles.center4}>
                             <div className={styles.result}>
                                 {serviceType === 'repair'
@@ -871,42 +840,7 @@ export default function Calc() {
                     </div>
                 )}
             </section>
-            <div className={styles.images}>
-                {/* Телефон */}
-                <div
-                    className={styles.iconWrapper}
-                    onClick={() => setShowDropdown(!showDropdown)}
-                    ref={iconRef}
-                >
-                    <Image src={phoneIcon} alt="phone" width={40} height={40} priority/>
-                    {showDropdown && (
-                        <div className={styles.dropdown}>
-                        {phoneNumbers.map((item, i) => (
-                            <a
-                                key={i}
-                                href={`tel:${item.number.replace(/[^0-9+]/g, '')}`}
-                                onClick={() => {
-                                    if (typeof window !== 'undefined' && typeof window.ym === 'function') {
-                                        if (item.name === 'Сергей') {
-                                            window.ym(103620695, 'reachGoal', 'phoneS');
-                                        } else if (item.name === 'Алексей') {
-                                            window.ym(103620695, 'reachGoal', 'phoneAle');
-                                        }
-                                    }
-                                }}
-                            >
-                                {item.name}: {item.number}
-                            </a>
-                        ))}
-                        </div>
-                    )}
-                </div>
-                <Link href={'https://t.me/remstroyprobot?start=GrayUnderCalc'}
-                      className={styles.iconLink}><Image src={tg} alt="telegram" width={40}
-                                                         height={40} priority/></Link>
-                <Link href={'mailto:remstroiipro@gmail.com'} className={styles.iconLink}><Image src={mail} alt="email" width={40}
-                                                                    height={40} priority/></Link>
-            </div>
+
         </section>
     );
 }

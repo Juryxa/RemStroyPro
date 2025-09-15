@@ -1,0 +1,46 @@
+.main {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+    width: 100vw;
+    padding-bottom: 30px;
+    /* фон */
+    background-image: url("/mainTopBg.webp");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    box-shadow: 0 1px 5px black;
+}
+
+/* блюр */
+.main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: inherit; /* повторяем фон */
+    filter: blur(9px) brightness(55%);
+    transform: scale(1.05); /* чтобы не было пустых краёв */
+    z-index: 0;
+}
+
+
+/* шум */
+.main::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org/2000/svg' width='100%' height='100%'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.3'/%3E%3C/svg%3E");
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* контент поверх */
+.main > * {
+    position: relative;
+    z-index: 2;
+}

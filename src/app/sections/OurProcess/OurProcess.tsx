@@ -11,8 +11,8 @@ function OurProcess() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setActiveIndex(prev => (prev >= fields.length - 1 ? -1 : prev + 1))
-        }, 2100)
+            setActiveIndex(prev => (prev >= fields.length - 1 ? 0 : prev + 1))
+        }, 2500)
 
         return () => clearInterval(interval)
     }, [fields.length])
@@ -30,7 +30,13 @@ function OurProcess() {
                     </Field>
                 ))}
             </div>
-            <Completed/>
+            <Completed files={[
+                { type: 'image', src: '/works/11.webp' },
+                { type: 'image', src: '/works/12.webp' },
+                { type: 'image', src: '/works/13.webp' },
+                { type: 'image', src: '/works/14.webp' },
+                { type: 'image', src: '/works/15.webp' },
+            ]}/>
         </section>
     )
 }

@@ -5,11 +5,20 @@ import Image from 'next/image';
 import tgForOrange from 'public/tgForOrange.svg';
 import Link from 'next/link';
 
-// Тексты для разных секций
-const SECTION_TEXTS: Record<string, string> = {
-    services: "Если остались вопросы - переходите в чат.",
-    plan: "Мы на связи, сразу ответим на вопросы.",
-    howwework: "Готовы обсудить ваш проект?"
+// Тексты и параметры для разных секций
+const SECTION_CONFIG: Record<string, { text: string; param: string }> = {
+    services: {
+        text: "Если остались вопросы - переходите в чат.",
+        param: "OrangeService"
+    },
+    plan: {
+        text: "Мы на связи, сразу ответим на вопросы.",
+        param: "OrangePlan"
+    },
+    howwework: {
+        text: "Готовы обсудить ваш проект?",
+        param: "OrangeHowWork"
+    }
 };
 
 export default function TgOrange() {
@@ -20,7 +29,7 @@ export default function TgOrange() {
 
     // Наблюдатель за секциями
     useEffect(() => {
-        const sectionIds = ['services', 'plan', 'howwework'];
+        const sectionIds = Object.keys(SECTION_CONFIG);
         const sectionElements = sectionIds.map(id => document.getElementById(id));
 
         const observer = new IntersectionObserver(
@@ -56,7 +65,7 @@ export default function TgOrange() {
     useEffect(() => {
         if (!currentSection || !isVisible) return;
 
-        const targetText = SECTION_TEXTS[currentSection] || "";
+        const targetText = SECTION_CONFIG[currentSection]?.text || "";
         let currentIndex = 0;
 
         // Сбрасываем предыдущую анимацию
@@ -82,16 +91,24 @@ export default function TgOrange() {
         };
     }, [currentSection, isVisible]);
 
+    // Получаем параметр для текущей секции
+    const getCurrentParam = () => {
+        return SECTION_CONFIG[currentSection]?.param || "default";
+    };
+
     return (
         <div className={`${styles.floatingContainer} ${isVisible ? styles.visible : styles.hidden}`}>
             <div className={styles.bubble}>
                 {displayText}
-                {displayText.length < (SECTION_TEXTS[currentSection]?.length || 0) && (
+                {displayText.length < (SECTION_CONFIG[currentSection]?.text.length || 0) && (
                     <span className={styles.cursor}>|</span>
                 )}
             </div>
 
-            <Link href="https://t.me/remstroyprobot?start=Orange" className={styles.button}>
+            <Link
+                href={`https://t.me/BuildConsultBot?start=${getCurrentParam()}`}
+                className={styles.button}
+            >
                 <Image
                     className={styles.tgImage}
                     src={tgForOrange}
