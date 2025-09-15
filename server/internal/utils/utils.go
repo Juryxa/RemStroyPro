@@ -16,6 +16,9 @@ var Dicronary = map[string]string{
 	"OrangePlan":    "Оранжевая планировка",
 	"OrangeHowWork": "Оранжевая как мы работаем",
 	"Line":          "Линия над синей кнопкой",
+	"HeaderButton":  "Кнопка из шапки",
+	"BottomMain":    "Кнопка под рассчетом скидки",
+	"BlueCloud":     "Синее облако у калькулятора",
 }
 
 func CreateServiceTgMsg(req request.ServiceReq) string {
