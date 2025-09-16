@@ -9,6 +9,7 @@ import Image from 'next/image';
 import Field from '@/app/components/Field';
 import Completed from "@/app/components/Completed";
 import ServicesModal from "@/app/components/ServicesModal";
+import ArrowOrange from 'public/ArrowOrange.svg'
 
 export default function Services() {
     const [activeTab, setActiveTab] = useState<'repair' | 'construction'>('repair');
@@ -336,10 +337,10 @@ export default function Services() {
                         })}
 
                         <button className={styles.prevButton} onClick={prevSlide}>
-                            ←
+                            <Image className={styles.arrowLeft} src={ArrowOrange} alt={''}/>
                         </button>
                         <button className={styles.nextButton} onClick={nextSlide}>
-                            →
+                            <Image className={styles.arrowRight} src={ArrowOrange} alt={''}/>
                         </button>
                     </div>
                 )}
@@ -380,7 +381,7 @@ export default function Services() {
                         </div>
 
                         <button className={styles.mobileArrow} onClick={nextSlide}>
-                            →
+
                         </button>
                     </div>
                 )}
