@@ -62,11 +62,40 @@ function Plan() {
                 </h3>
 
                 <div className={styles.cards}>
-                    <span className={`${styles.adjacentCard} ${styles.cardAnimation} ${animate ? styles.animate : ''}`}
-                          style={animate ? {animationDelay: '0.2s'} : {}}>
-                        <Image className={styles.adjacentImage} src={trianglePencil} alt={'pencil'}/>
-                        <p className={styles.adjacentText}>Перепланировка квартир</p>
+                    <span
+                        className={`${styles.adjacentCard} ${styles.cardAnimation} ${animate ? styles.animate : ''}`}
+                        style={animate ? { animationDelay: '0.2s' } : {}}
+                        onClick={(e) => e.currentTarget.classList.toggle(styles.flipped)}
+                        onMouseMove={(e) => {
+                            const card = e.currentTarget as HTMLElement;
+                            const rect = card.getBoundingClientRect();
+                            const x = e.clientX - rect.left - rect.width / 2;
+                            const y = e.clientY - rect.top - rect.height / 2;
+                            card.style.transform = `rotateY(${x / 20}deg) rotateX(${-y / 20}deg)`;
+                        }}
+                        onMouseLeave={(e) => {
+                            const card = e.currentTarget as HTMLElement;
+                            card.style.transform = '';
+                        }}
+                    >
+                      <div className={styles.cardInner}>
+                        {/* FRONT */}
+                          <div className={styles.cardFront}>
+                          <Image className={styles.adjacentImage} src={trianglePencil} alt={'pencil'} />
+                          <p className={styles.adjacentText}>Перепланировка квартир</p>
+                        </div>
+                          {/* BACK */}
+                          <div className={styles.cardBack}>
+                          <p className={styles.cardBackText}>
+                            Создаём уникальные дизайн-решения под ваш стиль и бюджет: планировка,
+                            визуализации, рабочие чертежи и подбор материалов. Продуманный проект
+                            для комфортной жизни.
+                          </p>
+                          <p><b>Сегмент цен:</b> от 2300 ₽/м²</p>
+                        </div>
+                      </div>
                     </span>
+
 
                     <span className={`${styles.centralCard} ${styles.cardAnimation} ${animate ? styles.animate : ''}`}
                           style={animate ? {animationDelay: '0.3s'} : {}}>
@@ -84,11 +113,38 @@ function Plan() {
                             Консультация по проекту
                         </button>
                     </span>
-
-                    <span className={`${styles.adjacentCard} ${styles.cardAnimation} ${animate ? styles.animate : ''}`}
-                          style={animate ? {animationDelay: '0.4s'} : {}}>
-                        <Image className={styles.adjacentImage} src={crossedPencil} alt={'pencil'}/>
-                        <p className={styles.adjacentText}>Дизайн-проект квартир и домов</p>
+                    <span
+                        className={`${styles.adjacentCard} ${styles.cardAnimation} ${animate ? styles.animate : ''}`}
+                        style={animate ? { animationDelay: '0.4s' } : {}}
+                        onClick={(e) => e.currentTarget.classList.toggle(styles.flipped)}
+                        onMouseMove={(e) => {
+                            const card = e.currentTarget as HTMLElement;
+                            const rect = card.getBoundingClientRect();
+                            const x = e.clientX - rect.left - rect.width / 2;
+                            const y = e.clientY - rect.top - rect.height / 2;
+                            card.style.transform = `rotateY(${x / 20}deg) rotateX(${-y / 20}deg)`;
+                        }}
+                        onMouseLeave={(e) => {
+                            const card = e.currentTarget as HTMLElement;
+                            card.style.transform = '';
+                        }}
+                    >
+                      <div className={styles.cardInner}>
+                        {/* FRONT */}
+                          <div className={styles.cardFront}>
+                          <Image className={styles.adjacentImage} src={crossedPencil} alt={'pencil'} />
+                          <p className={styles.adjacentText}>Дизайн-проект квартир и домов</p>
+                        </div>
+                          {/* BACK */}
+                          <div className={styles.cardBack}>
+                          <p  className={styles.cardBackText}>
+                            Разрабатываем дизайн-проект квартиры или дома — от эскизов до полного комплекта
+                            рабочих чертежей, включая 3D-визуализацию, подбор отделочных материалов и
+                            техническую документацию.
+                          </p>
+                          <p><b>Сегмент:</b> от 2500 ₽/м²</p>
+                        </div>
+                      </div>
                     </span>
                 </div>
             </div>

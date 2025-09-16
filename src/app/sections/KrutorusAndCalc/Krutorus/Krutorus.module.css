@@ -118,6 +118,31 @@
     flex-direction: row;
 }
 
+/* Ошибка при вводе */
+.invalid {
+    border: 2px solid #dc3545 !important;
+    background: rgba(220, 53, 69, 0.1);
+    position: relative;
+}
+
+.errorText {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #dc3545;
+    font-size: 13px;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+
+/* анимация появления ошибки */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .planGray {
     display: flex;
     user-select: none;
@@ -284,4 +309,34 @@ select.planEditableInput option:hover {
         margin-top: 30px;
         margin-left: 5%;
     }
+}
+
+/* 🔥 Toast уведомления */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    animation: fadeInOut 3s forwards;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+.toast.success {
+    background-color: #28a745; /* зелёный */
+}
+
+.toast.error {
+    background-color: #dc3545; /* красный */
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(20px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(20px); }
 }

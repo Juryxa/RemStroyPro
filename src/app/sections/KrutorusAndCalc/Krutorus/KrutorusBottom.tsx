@@ -17,7 +17,7 @@ function KrutorusBottom() {
 
     return (
         <div className={styles.krutorusBottom}>
-            <div className={styles.calc}><Calc/></div>
+            <div id='calculator' className={styles.calc}><Calc/></div>
             <div className={styles.images}>
                 {/* Gray cloud по центру */}
                 <Image

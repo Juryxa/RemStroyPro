@@ -603,42 +603,80 @@
     max-width: 400px;
 }
 
+/*.green {*/
+/*    background-color: #7D9A6AB0;*/
+/*    border-radius: 15px;*/
+/*    padding: 10px 12px;*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);*/
+/*    border: none;*/
+/*    min-height: 45px;*/
+/*}*/
+
+/*.green label {*/
+/*    color: #FFFFFFAB;*/
+/*    font-size: 16px;*/
+/*    font-weight: 400;*/
+/*    flex-shrink: 0;*/
+/*    width: 35%;*/
+/*}*/
+/*.editableInput {*/
+/*    background-color: transparent;*/
+/*    border: none;*/
+/*    color: white;*/
+/*    font-size: 16px;*/
+/*    width: 60%;*/
+/*    text-align: right;*/
+/*    outline: none;*/
+/*    padding: 5px;*/
+/*}*/
+
+/*.editableInput::placeholder {*/
+/*    color: rgba(255, 255, 255, 0.67);*/
+/*    opacity: 1;*/
+/*    font-weight: 400;*/
+/*}*/
+
 .green {
-    background-color: #7D9A6AB0;
-    border-radius: 15px;
-    padding: 10px 12px;
-    width: 100%;
     display: flex;
+    user-select: none;
+    text-align: center;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    border: none;
-    min-height: 45px;
+    border: 2px solid #F4871A;
+    background: #6C6B6C75;
+    border-radius: 20px;
+    padding: 10px 40px;
+    height: 48px;
 }
-
-.green label {
-    color: #FFFFFFAB;
-    font-size: 16px;
-    font-weight: 400;
-    flex-shrink: 0;
-    width: 35%;
+.formLabel{
+    color: white;
 }
 .editableInput {
-    background-color: transparent;
+    background: transparent;
+    text-align: center;
     border: none;
-    color: white;
-    font-size: 16px;
-    width: 60%;
-    text-align: right;
+    color: white; /* вводимые цифры */
     outline: none;
-    padding: 5px;
+    user-select: text;
+    font-size: 16px;
+    width: 100%;
+}
+.editableInput::placeholder {
+    color: #FFFFFFAB; /* placeholder */
+    opacity: 1;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
 }
 
-.editableInput::placeholder {
-    color: rgba(255, 255, 255, 0.67);
-    opacity: 1;
-    font-weight: 400;
+select.editableInput label option:hover {
+    background: #F4871A;
 }
+
 .submitButton {
     padding: 12px 15px;
     width: 100%;
