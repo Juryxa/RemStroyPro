@@ -348,7 +348,7 @@ export default function Services() {
                 {isMobile && (
                     <div className={styles.mobileCarousel}>
                         <button className={styles.mobileArrow} onClick={prevSlide}>
-                            ←
+                            <Image className={styles.arrowLeft} src={ArrowOrange} alt={''}/>
                         </button>
 
                         <div
@@ -381,7 +381,7 @@ export default function Services() {
                         </div>
 
                         <button className={styles.mobileArrow} onClick={nextSlide}>
-
+                            <Image className={styles.arrowRight} src={ArrowOrange} alt={''}/>
                         </button>
                     </div>
                 )}
