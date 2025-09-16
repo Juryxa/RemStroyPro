@@ -48,6 +48,27 @@ function Plan() {
         };
     }, []);
 
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add(styles.flipped);
+                    }
+                });
+            },
+            { threshold: 0.3 }
+        );
+
+        const cards = document.querySelectorAll(`.${styles.adjacentCard}`);
+        cards.forEach((card) => observer.observe(card));
+
+        return () => {
+            cards.forEach((card) => observer.unobserve(card));
+        };
+    }, []);
+
+
     return (
         <section>
             <div className={styles.plan} ref={sectionRef}>
@@ -65,7 +86,11 @@ function Plan() {
                     <span
                         className={`${styles.adjacentCard} ${styles.cardAnimation} ${animate ? styles.animate : ''}`}
                         style={animate ? { animationDelay: '0.2s' } : {}}
-                        onClick={(e) => e.currentTarget.classList.toggle(styles.flipped)}
+                        onClick={(e) => {
+                            const card = e.currentTarget;
+                            card.classList.toggle(styles.flipped);
+                        }}
+
                         onMouseMove={(e) => {
                             const card = e.currentTarget as HTMLElement;
                             const rect = card.getBoundingClientRect();
@@ -116,7 +141,11 @@ function Plan() {
                     <span
                         className={`${styles.adjacentCard} ${styles.cardAnimation} ${animate ? styles.animate : ''}`}
                         style={animate ? { animationDelay: '0.4s' } : {}}
-                        onClick={(e) => e.currentTarget.classList.toggle(styles.flipped)}
+                        onClick={(e) => {
+                            const card = e.currentTarget;
+                            card.classList.toggle(styles.flipped);
+                        }}
+
                         onMouseMove={(e) => {
                             const card = e.currentTarget as HTMLElement;
                             const rect = card.getBoundingClientRect();
