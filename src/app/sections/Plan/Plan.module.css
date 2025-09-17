@@ -80,7 +80,7 @@
 }
 
 .adjacentCard {
-    height: 10rem;
+    height: 14rem;
     display: flex;
     align-items: center;
     border-radius: 20px;
@@ -140,6 +140,12 @@
 }
 
 /* Мобильная адаптация */
+@media (max-width: 1300px) {
+    .cards {
+        width: 96%;
+    }
+
+}
 @media (max-width: 992px) {
     .plan {
         margin-top: 100px;
@@ -155,7 +161,7 @@
 
     .adjacentCard {
         width: 20rem;
-        height: 8rem;
+        height: 12rem;
         padding: 15px;
         max-width: 700px;
     }
@@ -174,9 +180,7 @@
 
 
     .adjacentCard {
-        width: 100%;
-        max-width: 500px;
-        height: auto;
+        width: 70%;
         padding: 20px;
         justify-content: center;
     }
@@ -240,6 +244,7 @@
     }
 
     .adjacentCard {
+        height: 13rem;
         flex-direction: column;
         text-align: center;
         gap: 10px;
@@ -247,7 +252,10 @@
     }
 
     .adjacentText {
-        font-size: 16px;
+        font-size: 18px;
+    }
+    .cardBackText{
+        font-size: 12px;
     }
 
     .adjacentImage {
@@ -311,4 +319,47 @@
         font-size: 13px;
         height: 34px;
     }
+}
+
+/* Для 3D flip */
+.adjacentCard {
+    perspective: 1000px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.cardInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease-in-out;
+}
+
+
+.flipped .cardInner {
+    transform: rotateY(180deg);
+}
+
+.cardFront,
+.cardBack {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+    background-color: #888179B2;
+    padding: 20px;
+    text-align: center;
+}
+
+.cardBack {
+    transform: rotateY(180deg);
+    font-size: 14px;
+    line-height: 1.4;
+    gap: 10px;
 }
