@@ -26,6 +26,7 @@
     z-index: 2;
     border-radius: 50px;
     border: none;
+    margin: auto auto;
 }
 
 .calc::before {
@@ -778,6 +779,7 @@ select.editableInput label option:hover {
 @media (min-width: 768px) {
     .calc {
         padding: 0 30px;
+        border-radius: 30px;
     }
 
     .stepContent, .stepContent4 {
@@ -787,6 +789,9 @@ select.editableInput label option:hover {
     .title {
         font-size: 32px;
         padding: 10px 30px;
+        background-color: #2422234D;
+        width: 90%;
+        align-self: center;
     }
 
     .title1 {
@@ -851,6 +856,7 @@ select.editableInput label option:hover {
     .center4 {
         padding: 40px 0;
     }
+
 }
 
 @media (min-width: 1024px) {
@@ -954,11 +960,13 @@ select.editableInput label option:hover {
 @media (max-width: 480px) {
     .calcSection {
         border-radius: 30px;
+        width: 100%;
     }
 
     .calc {
         border-radius: 30px;
         width: 90%;
+        align-items: center;
     }
 
     .calc::before, .calc::after {
@@ -1050,19 +1058,14 @@ select.editableInput label option:hover {
     }
 }
 
-@media (max-width: 430px) {
-    .calc{
-        width: 80%;
-    }
-}
+/*@media (max-width: 430px) {*/
+/*    .calc{*/
+/*        width: 80%;*/
+/*    }*/
+/*}*/
 
 @media (max-width: 380px) {
-    .calcSection{
-        margin-right: 30px;
-    }
-    .calc{
-        width: 80%;
-    }
+
     .title {
         font-size: 22px;
     }
@@ -1113,25 +1116,11 @@ select.editableInput label option:hover {
         font-size: 13px;
     }
 }
-@media (max-width: 360px) {
-    .calc{
-        width: 75%;
-    }
-}
-@media (max-width: 768px) {
-    .title{
-        background-color: #2422234D;
-        width: 90%;
-        align-self: center;
-    }
-    .calcSection {
-        padding: 10px;
-    }
-
-    .calc {
-        border-radius: 30px;
-    }
-}
+/*@media (max-width: 360px) {*/
+/*    .calc{*/
+/*        width: 75%;*/
+/*    }*/
+/*}*/
 .iconWrapper {
   position: relative;
   cursor: pointer;
