@@ -14,18 +14,18 @@ services:
     networks:
       - app-network
 
-  frontend:
-    build: ../../AppData/Local/Temp/Rar$DRa2960.7067/RemStroyPro-main
-    container_name: krutorus-frontend
-    ports:
-      - "3000:3000"
-    environment:
-      - NEXT_PUBLIC_API_URL=http://backend:8080
-    restart: unless-stopped
-    depends_on:
-      - backend
-    networks:
-      - app-network
+#  frontend:
+#    build: ../../AppData/Local/Temp/Rar$DRa2960.7067/RemStroyPro-main
+#    container_name: krutorus-frontend
+#    ports:
+#      - "3000:3000"
+#    environment:
+#      - NEXT_PUBLIC_API_URL=http://backend:8080
+#    restart: unless-stopped
+#    depends_on:
+#      - backend
+#    networks:
+#      - app-network
 
 networks:
   app-network:

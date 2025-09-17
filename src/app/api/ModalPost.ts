@@ -4,7 +4,8 @@ import {IPlanModal} from "@/app/api/ModalInterface/IPlanModal";
 import {IServiceModal} from "@/app/api/ModalInterface/IServiceModal";
 import {IDiscount} from "@/app/api/ModalInterface/IDiscount";
 
-const MODAL_URL = '/api'
+// const MODAL_URL = '/api'
+const MODAL_URL = 'http://localhost:8080'
 
 export const createApiInstance = (
     baseURL: string,
