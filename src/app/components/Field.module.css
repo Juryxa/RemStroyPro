@@ -194,7 +194,7 @@
         font-size: 14px;
         text-align: center;
         white-space: wrap;
-        padding: 30px;
+        padding: 40px;
     }
 
     .compact {
@@ -202,21 +202,24 @@
     }
 
     .transparentOrangePrice {
-        padding: 10px 10px;
         height: auto;
-        text-wrap: nowrap;
+        text-wrap: wrap;
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 413px) {
     .transparentOrange{
         font-size: 16px;
         padding: 20px;
     }
     .transparentOrangePrice{
-        font-size: 11px;
+        font-size: 13px;
         min-width: 40px;
-        text-wrap: wrap;
+    }
+}
+@media screen and (max-width: 380px) {
+    .transparentOrangePrice{
+        font-size: 11px;
     }
 }
 

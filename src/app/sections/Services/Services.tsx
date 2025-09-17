@@ -389,12 +389,12 @@ export default function Services() {
 
             <Completed files={[
                 { type: 'image', src: '/works/2.webp' },
-                { type: 'video', src: '/works/1.mp4' },
+                { type: 'video', src: '/works/1.mp4', poster: '/previews/2.webp' },
                 { type: 'image', src: '/works/3.webp' },
                 { type: 'image', src: '/works/4.webp' },
                 { type: 'image', src: '/works/5.webp' },
                 { type: 'image', src: '/works/6.webp' },
-                { type: 'video', src: '/works/2.mp4' },
+                { type: 'video', src: '/works/2.mp4', poster: '/previews/1.webp' },
                 { type: 'image', src: '/works/7.webp' },
                 { type: 'image', src: '/works/8.webp' },
                 { type: 'image', src: '/works/9.webp' },

@@ -9,6 +9,7 @@ import AboutUs from "@/app/sections/AboutUs/AboutUs";
 import Footer from "@/app/sections/Footer/Footer";
 import {useEffect, useState} from 'react';
 import KrutorusBottom from "@/app/sections/KrutorusAndCalc/Krutorus/KrutorusBottom";
+import ScrollProgressBar from "@/app/components/ScrollProgressBar";
 
 export default function Home() {
     const [activeSection, setActiveSection] = useState('krutorus');
@@ -52,6 +53,7 @@ export default function Home() {
 
     return (
         <div className={styles.page}>
+            <ScrollProgressBar/>
             <section id='krutorus'><KrutorusMain activeSection={activeSection}/></section>
             <section id='krutorusBottom'><KrutorusBottom/></section>
             <TgOrange/>

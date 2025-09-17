@@ -8,6 +8,7 @@ import ImageModal from './ImageModal';
 type MediaFile = {
     type: 'image' | 'video';
     src: string;
+    poster?: string;
 };
 
 interface CompletedProps {
@@ -203,6 +204,7 @@ export default function Completed({ files }: CompletedProps) {
                                 <div className={styles.videoWrapper}>
                                     <video
                                         src={file.src}
+                                        poster={file.poster}
                                         width={330}
                                         height={200}
                                         muted
@@ -210,7 +212,7 @@ export default function Completed({ files }: CompletedProps) {
                                         preload="metadata"
                                         className={styles.video}
                                     />
-                                    <div className={styles.playIcon}>▶</div>
+                                    <div className={styles.playIcon} aria-hidden="true" />
                                 </div>
                             )}
                         </div>
