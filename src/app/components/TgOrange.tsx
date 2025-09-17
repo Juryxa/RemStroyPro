@@ -106,7 +106,7 @@ export default function TgOrange() {
             </div>
 
             <Link
-                href={`https://t.me/BuildConsultBot?start=${getCurrentParam()}`}
+                href={`https://t.me/remstroyprobot?start=${getCurrentParam()}`}
                 className={styles.button}
             >
                 <Image
