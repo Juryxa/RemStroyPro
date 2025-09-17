@@ -268,7 +268,11 @@
     }
     .tgPhone{
         display: flex;
-        gap: 25px;
+        align-items: flex-start;
+        gap: 13px;
+    }
+    .waNav{
+        transform: translateY(-2px);
     }
 
     .phone {

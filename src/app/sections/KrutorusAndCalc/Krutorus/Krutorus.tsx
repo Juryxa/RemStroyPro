@@ -16,7 +16,6 @@ function Krutorus() {
     const [phone, setPhone] = useState('');
     const [loading, setLoading] = useState(false);
 
-    // 🔥 уведомления
     const [toast, setToast] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
     const [showValidationError, setShowValidationError] = useState(false);
 

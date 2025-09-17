@@ -9,6 +9,7 @@ import tgBlue from 'public/tgBlueMain.svg';
 import Link from "next/link";
 import PlanModal from "@/app/components/PlanModal";
 import {useEffect, useRef, useState} from "react";
+import wa from "public/whatsapp.svg";
 
 function Nav({activeSection}: { activeSection: string }) {
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -114,6 +115,9 @@ function Nav({activeSection}: { activeSection: string }) {
                     <div className={styles.tgPhone}>
                         <Link href={'https://t.me/remstroyprobot?start=HeaderButton'}>
                             <Image src={tgBlue} alt={'tg'}/>
+                        </Link>
+                        <Link href='https://wa.me/+79999817129' className={styles.waNav}>
+                            <Image src={wa} alt="whatsapp" width={23} height={23}/>
                         </Link>
                         <Link className={styles.phone} href="tel:+79999817129">+7 (999) 981-71-29</Link>
                     </div>

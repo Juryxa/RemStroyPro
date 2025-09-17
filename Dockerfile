@@ -3,7 +3,7 @@ FROM node:lts-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
-COPY ../../AppData/Local/Temp/Rar$DRa2960.7067/RemStroyPro-main .
+COPY . .
 RUN npm run build
 
 # --- Этап запуска ---
