@@ -43,6 +43,7 @@ function KrutorusBottom() {
                     src={CloudGray}
                     alt="Узнайте стоимость любой работы!"
                     onLoad={() => setLoaded(p => ({ ...p, gray: true }))}
+                    priority
                 />
 
                 <div className={styles.cloudBlueWrap}>
@@ -51,6 +52,7 @@ function KrutorusBottom() {
                         src={CloudBlue}
                         alt="Есть вопросы или нужна помощь с выбором услуги?"
                         onLoad={() => setLoaded(p => ({ ...p, blue: true }))}
+                        priority
                     />
                     <div className={styles.cloudInfo}>
                         <Image className={styles.tg} src={tg} alt=""/>
@@ -68,6 +70,7 @@ function KrutorusBottom() {
                     src={BuilderImage}
                     alt="строитель"
                     onLoad={() => setLoaded(p => ({ ...p, man: true }))}
+                    priority
                 />
 
                 <Image className={styles.bottom} src={Bottom} alt=""/>
