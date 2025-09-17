@@ -128,9 +128,9 @@ function Nav({activeSection}: { activeSection: string }) {
                         className={`${styles.burger} ${isMenuOpen ? styles.open : ''}`}
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <span className={styles.stick}></span>
+                        <span className={styles.stick}></span>
+                        <span className={styles.stick}></span>
                     </button>
                 </div>
             </div>

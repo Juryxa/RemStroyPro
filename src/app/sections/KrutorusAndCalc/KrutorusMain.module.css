@@ -42,5 +42,4 @@
 /* контент поверх */
 .main > * {
     position: relative;
-    z-index: 2;
 }

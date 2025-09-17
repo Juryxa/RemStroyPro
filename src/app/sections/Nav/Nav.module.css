@@ -213,7 +213,7 @@
     align-items: center;
 }
 
-.burger span {
+.stick{
     display: block;
     height: 4px;
     background: white;
