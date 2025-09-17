@@ -50,15 +50,11 @@ func CreateLayoutTgMsg(req request.Layout) string {
 }
 
 func CreateLayout2TgMsg(req request.Layout2) string {
-	if req.Name == "" || req.Name == " " {
-		req.Name = "не указано"
-	}
-
 	return fmt.Sprintf(
 		"📋 Новая заявка!\n\n"+
-			"👤 Имя: %s\n"+
+			"👤 Тип работы: %s\n"+
 			"📞 Телефон: %s",
-		req.Name, req.Phone,
+		req.ProjectType, req.Phone,
 	)
 }
 
