@@ -76,6 +76,32 @@ func (h *handler) HandleLayoutRequest(c *gin.Context) {
 	})
 }
 
+func (h *handler) HandleLayout2Request(c *gin.Context) {
+	var req request.Layout2
+
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Неверный формат данных",
+		})
+		return
+	}
+
+	req.Validate(c)
+
+	msg := utils.CreateLayout2TgMsg(req)
+	if err := h.tgService.SendNotification(h.chatID, msg); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "Не удалось отправить заявку",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"status":  "success",
+		"message": "Заявка отправлена",
+	})
+}
+
 func (h *handler) HandleCalcRequest(c *gin.Context) {
 	var req request.Calc
 
