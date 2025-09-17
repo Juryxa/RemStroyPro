@@ -216,6 +216,7 @@
 .stick{
     display: block;
     height: 4px;
+    width: 100%;
     background: white;
     border-radius: 3px;
     transition: all 0.3s ease;
